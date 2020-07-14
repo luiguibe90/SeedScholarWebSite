@@ -6651,7 +6651,7 @@ button.bg-dark:focus {
 
 .mb-5,
 .my-5 {
-  margin-bottom: 3rem !important; }
+  margin-bottom: 0rem !important; }
 
 .ml-5,
 .mx-5 {
@@ -6708,7 +6708,7 @@ button.bg-dark:focus {
 
 .pb-2,
 .py-2 {
-  padding-bottom: 0.5rem !important; }
+  padding-bottom: 0rem !important; }
 
 .pl-2,
 .px-2 {
@@ -8802,7 +8802,7 @@ h1, h2, h3, h4, h5,
 
 .staff {
   overflow: hidden;
-  margin-bottom: 30px;
+  margin-bottom: 0.5px;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
