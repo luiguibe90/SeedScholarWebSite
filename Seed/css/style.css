@@ -3720,7 +3720,11 @@ input[type="button"].btn-block {
 .navbar-light .navbar-brand {
   color: rgba(0, 0, 0, 0.9); }
   .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
-    color: rgba(0, 0, 0, 0.9); }
+    color: #000000;
+    text-shadow: #2a388a 0.1em 0.1em 0.1em;
+
+
+   }
 
 .navbar-light .navbar-nav .nav-link {
   color: rgba(0, 0, 0, 0.5); }
@@ -8407,13 +8411,27 @@ h1, h2, h3, h4, h5,
   padding: 0;
   line-height: 1;
   color: white;
-  text-shadow: black 0.1em 0.1em 0.1em;
+  text-shadow: rgb(255, 255, 255) 0.1em 0.1em 0.1em;
   text-transform: uppercase; }
   .navbar-brand span {
     display: block;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 2px; }
+  .navbar-brand1 {
+      font-weight: 900;
+      font-size: 38px;
+      padding: 0;
+      line-height: 1;
+      color: white;
+      text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.1em;
+      text-transform: uppercase; }
+      .navbar-brand1 span {
+        display: block;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px; }
+      
 
 .hero-wrap {
   width: 100%;
@@ -9894,12 +9912,15 @@ textarea.form-control {
   overflow: hidden;
   
 }
+
 .sticky {
   z-index: 1;
   position: fixed;
   top: 0;
   width: 100%;
+  
 }
+
 .content {
   padding: 16px;
 }
