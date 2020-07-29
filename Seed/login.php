@@ -1,3 +1,17 @@
+<?php
+    include '../intranet/service/loginService.php';
+
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        $loginService = new LoginService();
+        $row = $loginService->login($_POST['username'], $_POST['password']);
+        if (isset($row)) {
+            session_start();
+            $_SESSION["user"] = $row;
+            header('Location: ../intranet/index.php');
+        } 
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,18 +128,18 @@
 						<div class="heading-section heading-section-white ftco-animate mb-5 text-center">
 							<h4 class="navbar-brand1">Seed. <span>School</span></h4>
 						</div>
-						<form action="#" class="appointment-form ftco-animate" method="POST">
+						<form id="login" action="login.php" class="appointment-form ftco-animate" method="POST">
 							<div class="d-md-flex">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Usuario">
+									<input name="username" type="text" class="form-control" placeholder="Usuario">
 								</div>
 								<div class="form-group ml-md-5">
-									<input type="password" class="form-control" placeholder="Contraseña">
+									<input name="password" type="password" class="form-control" placeholder="Contraseña">
 								</div>
 							</div>
 							<p class="mb-0">
-								<a href="../Intranet2/Index.html"
-									class="btn py-2 px-3 btn-primary d-flex align-items-center justify-content-center">
+								<a href="#" onclick="document.getElementById('login').submit()"
+								class="btn py-2 px-3 btn-primary d-flex align-items-center justify-content-center">
 									<span>Ingresar</span>
 								</a>
 							</p>

@@ -1,3 +1,15 @@
+<?php
+include "./service/clienteService.php";
+session_start();
+  if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+  }
+  
+  echo 'Hello, '.$_SESSION['User']; 
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -77,7 +89,7 @@
             <img src="../Intranet2/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Alexander </br> Pierce</a>
+            <a href="#" class="d-block"> <?php echo $_SESSION['user']['NAME']?> </br> Pierce</a>
           </div>
         </div>
 
