@@ -1,8 +1,6 @@
 <?php
 
 include 'conexion.php';
-
-
 class MainService {
 
     public $conex;
@@ -15,10 +13,5 @@ class MainService {
     function findAll1($sql) {
         return $this->conex->query("SELECT * FROM ".$sql);
     }
-
-
-
 }
-
-
 ?>

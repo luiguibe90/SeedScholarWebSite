@@ -1,14 +1,9 @@
 <?php
-include "./service/clienteService.php";
 session_start();
-  if (!isset($_SESSION['user'])) {
-    header('Location: login.php');
-  }
-  
-  echo 'Hello, '.$_SESSION['User']; 
-
+if (!isset($_SESSION['USU'])) {
+  header('Location: ../../../Seed/login.html');
+}
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -16,27 +11,27 @@ session_start();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Administrador|Seed School</title>
+  <title><?php echo $_SESSION['USU']['ROL'] ?>|Seed School</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="./plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="./plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="./plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="./plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="./dist/css/adminlte.css">
+  <link rel="stylesheet" href="../../dist/css/adminlte.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="./plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
-  <link rel="stylesheet" href="./plugins/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -78,18 +73,20 @@ session_start();
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="../../index3.html" class="brand-link">
-        <img src="../Intranet2/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle1 ">
-        <span class="brand-text font-weight-light">Administrador</span>
+        <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle1 ">
+        <span class="brand-text font-weight-light"><?php echo $_SESSION['USU']['ROL'] ?></span>
       </a>
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="../Intranet2/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="../../dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block"> <?php echo $_SESSION['user']['NAME']?> </br> Pierce</a>
+          <?php $temp = explode(" ", $_SESSION['USU']['PNAME'] ); ?>
+            <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME'] ); ?>
+            <a href="#" class="d-block"><?php echo $temp[0];?></br> <?php echo $temp2[0];?> </a>
           </div>
         </div>
 
@@ -191,37 +188,37 @@ session_start();
   <!-- ./wrapper -->
 
   <!-- jQuery -->
-  <script src="./plugins/jquery/jquery.min.js"></script>
+  <script src="../../plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
-  <script src="./plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>
   <!-- Bootstrap 4 -->
-  <script src="./plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- ChartJS -->
-  <script src="./plugins/chart.js/Chart.min.js"></script>
+  <script src="../../plugins/chart.js/Chart.min.js"></script>
   <!-- overlayScrollbars -->
-  <script src="./plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- Sparkline -->
-  <script src="./plugins/sparklines/sparkline.js"></script>
+  <script src="../../plugins/sparklines/sparkline.js"></script>
   <!-- JQVMap -->
-  <script src="./plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="./plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
   <!-- jQuery Knob Chart -->
-  <script src="./plugins/jquery-knob/jquery.knob.min.js"></script>
+  <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
   <!-- daterangepicker -->
-  <script src="./plugins/moment/moment.min.js"></script>
-  <script src="./plugins/daterangepicker/daterangepicker.js"></script>
+  <script src="../../plugins/moment/moment.min.js"></script>
+  <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
   <!-- Tempusdominus Bootstrap 4 -->
-  <script src="./plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
   <!-- Summernote -->
-  <script src="./plugins/summernote/summernote-bs4.min.js"></script>
+  <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="./dist/js/adminlte.min.js"></script>
+  <script src="../../dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="./dist/js/demo.js"></script>
+  <script src="../../dist/js/demo.js"></script>
 </body>
 
 </html>
