@@ -8,7 +8,6 @@ include '../../service/administratorService.php';
 $administratorService = new administratorService();
 $countAlumns = $administratorService->countTypePeople(1);
 $countTeachers =$administratorService->countTypePeople(3);
-
 ?>
 
 <!DOCTYPE html>
