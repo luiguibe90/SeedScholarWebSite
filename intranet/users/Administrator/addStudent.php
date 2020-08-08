@@ -5,7 +5,13 @@ if (!isset($_SESSION['USU'])) {
 }
 
 include '../../service/administratorService.php';
-
+include '../../service/studentService.php';
+$studentService = new studentService();
+if (isset($_POST["btn_subR"])) {
+    $studentService->insertPeopleStudent($_POST["cedRepresentantive"], $_POST["snRepresentative"],
+    $_POST["nameRepresentative"],$_POST["addressRepresentative"],$_POST["telfRepresentative"],
+    $_POST["dateBrhRepresentative"],$_POST["genderR"],$_POST["pemailRepresentative"]);
+} 
 
 ?>
 
@@ -102,20 +108,20 @@ include '../../service/administratorService.php';
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-                        <li class="nav-item">
-                            <a href="./index.php" class="nav-link active">
+               <li class="nav-item">
+                            <a href="widgets.html" class="nav-link active">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Inicio
-                                    <span class="right badge badge-danger">New</span>
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-header">Gestionar</li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="fa fa-users red-bg"></i>
                                 <p>
-                                    Gestion
+                                    Personas
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -127,7 +133,7 @@ include '../../service/administratorService.php';
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
+                                    <a href="./managStudent.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Alumnos</p>
                                     </a>
@@ -147,6 +153,7 @@ include '../../service/administratorService.php';
                             </ul>
                         </li>
 
+
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
@@ -165,7 +172,7 @@ include '../../service/administratorService.php';
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item"><a href="#">Gestion Alumno</a></li>
+                                <li class="breadcrumb-item"><a href="managStudent">Gestion Alumno</a></li>
                                 <li class="breadcrumb-item active">Agregar Alumno</li>
                             </ol>
                         </div>
@@ -211,12 +218,12 @@ include '../../service/administratorService.php';
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nombres</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                            name="nameRepresenative"   placeholder="Ingrese sus Nombres">
+                                            name="nameRepresentative"   placeholder="Ingrese sus Nombres">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Apellidos</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                            name="snRrepresentative"    placeholder="Ingrese sus pellidos">
+                                            name="snRepresentative"    placeholder="Ingrese sus pellidos">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Fecha nacimiento</label>
@@ -239,9 +246,9 @@ include '../../service/administratorService.php';
                                             name="addressRepresentative"    placeholder="Ingrese su dirección">
                                         </div>
                                         <label for="exampleInputText">Genero:</label></br>
-                                            <input type="radio" id="male" name="genderR" value="male">
+                                            <input type="radio" id="male" name="genderR" value="MAS">
                                             <label for="male">Masculino</label><br>
-                                            <input type="radio" id="female" name="genderR" value="female">
+                                            <input type="radio" id="female" name="genderR" value="FEM">
                                             <label for="female">Femenino</label><br>
 
 
@@ -249,7 +256,7 @@ include '../../service/administratorService.php';
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                        <button name="btn_subR" type="submit" class="btn btn-primary">Enviar</button>
                                     </div>
                                 </form>
                             </div>
@@ -296,11 +303,15 @@ include '../../service/administratorService.php';
                                             <input type="text" class="form-control" id="exampleText"
                                                 placeholder="Ingrese su numero de  Teléfono">
                                         </div>
-                                        
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Dirección</label>
+                                            <input type="text" class="form-control" id="exampleText"
+                                            name="addreA"    placeholder="Ingrese su dirección">
+                                        </div>
                                         <label for="exampleInputText">Genero:</label></br>
-                                            <input type="radio" id="male" name="genderA" value="male">
+                                            <input type="radio" id="male" name="genderA" value="MAS">
                                             <label for="male">Masculino</label><br>
-                                            <input type="radio" id="female" name="genderA" value="female">
+                                            <input type="radio" id="female" name="genderA" value="FEM">
                                             <label for="female">Femenino</label><br>
                                         
                                         
@@ -310,7 +321,7 @@ include '../../service/administratorService.php';
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                        <button name="btn_subA" type="submit" class="btn btn-primary">Enviar</button>
                                     </div>
                                 </form>
                             </div>
