@@ -8,7 +8,6 @@ include '../../service/administratorService.php';
 $administratorService = new administratorService();
 $countAlumns = $administratorService->countTypePeople(1);
 $countTeachers =$administratorService->countTypePeople(3);
-
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +103,7 @@ $countTeachers =$administratorService->countTypePeople(3);
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-                        <li class="nav-item">
+               <li class="nav-item">
                             <a href="index.php" class="nav-link active">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
@@ -135,7 +134,7 @@ $countTeachers =$administratorService->countTypePeople(3);
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index3.html" class="nav-link">
+                                    <a href="./managAspirant.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Representantes</p>
                                     </a>
@@ -180,10 +179,10 @@ $countTeachers =$administratorService->countTypePeople(3);
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3><?php echo $countAlumns ?></h3>
-                                <p>Estudiantes</p>
+                                <p>Visualizar Aspirantes</p>
                             </div>
                             <div class="icon">
-                                <i class="fa fa-users red-bg"></i>
+                                <i class="fa fa-list red-bg"></i>
                             </div>
                             <a href="../classes/index.html" class="small-box-footer">ir <i
                                     class="fas fa-arrow-circle-right"></i></a>
@@ -192,36 +191,26 @@ $countTeachers =$administratorService->countTypePeople(3);
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3><?php echo $countTeachers ?></h3>
-                                <p>Docentes</p>
+                                <h3><?php echo $countAlumns ?></h3>
+                                <p>Agregar Aspirante</p>
                             </div>
                             <div class="icon">
-                                <i class="fa fa-users red-bg"></i>
+                                <i class="ion ion-person-add"></i>
                             </div>
-                            <a href="../classes/index.html" class="small-box-footer">ir <i
+                            <a href="addAspirant.php" class="small-box-footer">ir <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-            </section>
-
-
-
-
-
-
-
-
-
-            <!-- Main content -->
+            </section>            
         </div>
-        <!-- /.content-wrapper -->
-
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.0.5
+            <p>
+						Copyright &copy;
+						<script>document.write(new Date().getFullYear());</script> All rights reserved | SeedSchool
+					</p>
             </div>
-            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-            reserved.
+            
         </footer>
 
         <!-- Control Sidebar -->
