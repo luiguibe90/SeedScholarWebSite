@@ -104,7 +104,7 @@ $countTeachers =$administratorService->countTypePeople(3);
                with font-awesome or any other icon font library -->
 
                <li class="nav-item">
-                            <a href="widgets.html" class="nav-link active">
+                            <a href="index.php" class="nav-link active">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Inicio
@@ -122,7 +122,7 @@ $countTeachers =$administratorService->countTypePeople(3);
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../../index.html" class="nav-link">
+                                    <a href="./managTeacher.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Profesores</p>
                                     </a>
