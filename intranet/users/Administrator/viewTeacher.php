@@ -1,24 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['USU'])) {
-    header('Location: ../../../Seed/login.html');
+  header('Location: ../../../Seed/login.html');
 }
 
 include '../../service/administratorService.php';
-include '../../service/teacherService.php';
-$teacherService = new teacherService();
-if (isset($_POST["btn_subD"])) {
-    $teacherService->insertPeopleTeacher(
-        $_POST["cedDocente"],
-        $_POST["snDocente"],
-        $_POST["nameDocente"],
-        $_POST["addressDocente"],
-        $_POST["telfDocente"],
-        $_POST["dateBrhDocente"],
-        $_POST["genderD"],
-        $_POST["pemailDocente"]
-    );
-}
+include '../../service/studentService.php';
+$studentService = new studentService();
 
 ?>
 
@@ -75,7 +63,8 @@ if (isset($_POST["btn_subD"])) {
             <!-- SEARCH FORM -->
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                        aria-label="Search">
                     <div class="input-group-append">
                         <button class="btn btn-navbar" type="submit">
                             <i class="fas fa-search"></i>
@@ -101,15 +90,16 @@ if (isset($_POST["btn_subD"])) {
                         <img src="../../dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <?php $temp = explode(" ", $_SESSION['USU']['PNAME']); ?>
-                        <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME']); ?>
-                        <a href="#" class="d-block"><?php echo $temp[0]; ?></br> <?php echo $temp2[0]; ?> </a>
+                        <?php $temp = explode(" ", $_SESSION['USU']['PNAME'] ); ?>
+                        <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME'] ); ?>
+                        <a href="#" class="d-block"><?php echo $temp[0];?></br> <?php echo $temp2[0];?> </a>
                     </div>
                 </div>
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
@@ -150,16 +140,20 @@ if (isset($_POST["btn_subD"])) {
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./managAspirant.php" class="nav-link">
+                                    <a href="../../index3.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Aspirantes</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
                 </nav>
+                <!-- /.sidebar-menu -->
             </div>
+            <!-- /.sidebar -->
         </aside>
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -167,92 +161,120 @@ if (isset($_POST["btn_subD"])) {
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Gestión Docente</h1>
+                            <h1>Visualizar Docentes</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item"><a href="managTeacher.php">Gestión Docente</a></li>
-                                <li class="breadcrumb-item active">Agregar Docente</li>
+                                <li class="breadcrumb-item"><a href="managTeacher.php">GestionDocentes</a></li>
+                                <li class="breadcrumb-item active">VisualizarDocentes</li>
                             </ol>
                         </div>
                     </div>
-                </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <section class="content">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <h3 class="card-title">Formulario Docente:</h3>
-                                </div>
-                                <form role="form" data-toggle="validator" method="post">
-                                    <div class="card-body">
-                                        <div class="card-header">
-                                            <h3 class="card-title">Datos del Docente:</h3>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Numero de Cédula</label>
-                                            <input type="text" class="form-control" id="exampleText" name="cedDocente" placeholder="Ingrese Numero de Cédula" maxlength="10">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Nombres</label>
-                                            <input type="text" class="form-control" id="exampleText" name="nameDocente" placeholder="Ingrese Nombres">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Apellidos</label>
-                                            <input type="text" class="form-control" id="exampleText" name="snDocente" placeholder="Ingrese Apellidos">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Fecha nacimiento</label>
-                                            <input type="date" class="form-control" id="exampleText" name="dateBrhDocente" placeholder="Seleccione Fecha de Nacimiento">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Correo Personal</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" name="pemailDocente" placeholder="Ingrese email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Teléfono</label>
-                                            <input type="text" class="form-control" id="exampleText" name="telfDocente" placeholder="Ingrese numero de Teléfono">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Dirección</label>
-                                            <input type="text" class="form-control" id="exampleText" name="addressDocente" placeholder="Ingrese dirección Domiciliaria">
-                                        </div>
-                                        <label for="exampleInputText">Genero:</label></br>
-                                        <input type="radio" id="male" name="genderD" value="MAS">
-                                        <label for="male">Masculino</label><br>
-                                        <input type="radio" id="female" name="genderD" value="FEM">
-                                        <label for="female">Femenino</label><br>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button name="btn_subD" type="submit" class="btn btn-primary">Enviar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+<!-- /.row -->
+<div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Listado Alumnos</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Cod_Docente</th>
+                      <th>Cedula</th>
+                      <th>Apellido</th>
+                      <th>Nombre</th>
+                      <th>Dirección</th>
+                      <th>Teléfono</th>
+                      <th>FechaNacimiento</th>
+                      <th>Genero</th>
+                      <th>Correo</th>
+                      <th>CorreoPersonal</th>
+                      <th>Estado</th>
+                      <th>FechaInicio</th>
+                      <th>FechaFinal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $result= $studentService->showPeople(3);
+                    while($alumn = mysqli_fetch_array($result))
+                    {
+                    echo "<tr>";
+                    echo "<td>" . $alumn['COD_PERSONA'] . "</td>";
+                    echo "<td>" . $alumn['CEDULA'] . "</td>";
+                    echo "<td>" . $alumn['APELLIDO'] . "</td>";
+                    echo "<td>" . $alumn['NOMBRE'] . "</td>";
+                    echo "<td>" . $alumn['DIRECCION'] . "</td>";
+                    echo "<td>" . $alumn['TELEFONO'] . "</td>";
+                    echo "<td>" . $alumn['FECHA_NACIMIENTO'] . "</td>";
+                    echo "<td>" . $alumn['GENERO'] . "</td>";
+                    echo "<td>" . $alumn['CORREO'] . "</td>";
+                    echo "<td>" . $alumn['CORREO_PERSONAL'] . "</td>";
+                    echo "<td>" . $alumn['ESTADO'] . "</td>";
+                    echo "<td>" . $alumn['FECHA_INICIO'] . "</td>";
+                    echo "<td>" . $alumn['FECH_FIN'] . "</td>";
+
+                    echo "</tr>"; 
+                    }                    
+                    ?>
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+
                 </div>
             </section>
+
+
+
+
+
+
+
+
+
+            <!-- Main content -->
         </div>
-    </div>
-    <footer class="main-footer">
+        <!-- /.content-wrapper -->
+
+        <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-            <p>
-						Copyright &copy;
-						<script>document.write(new Date().getFullYear());</script> All rights reserved | SeedSchool
-					</p>
+                <b>Version</b> 3.0.5
             </div>
-            
+            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            reserved.
         </footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 
@@ -262,7 +284,7 @@ if (isset($_POST["btn_subD"])) {
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
