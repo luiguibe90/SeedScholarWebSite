@@ -7,15 +7,19 @@ if (!isset($_SESSION['USU'])) {
 include '../../service/administratorService.php';
 include '../../service/studentService.php';
 $studentService = new studentService();
-if (isset($_POST['btn_subR'])) {
+
+if (isset($_POST["btn_subR"])) {
+
     $studentService->insertPeopleRepresentative($_POST["cedRepresentantive"], $_POST["snRepresentative"],
     $_POST["nameRepresentative"],$_POST["addressRepresentative"],$_POST["telfRepresentative"],
     $_POST["dateBrhRepresentative"],$_POST["genderR"],$_POST["pemailRepresentative"]);
-} elseif (isset($_POST['btn_subA'])){
-    echo "<script>alert('datos enviados..);</script>";
+    
+
+} elseif (isset($_POST["btn_subA"])){
+    echo("<script>console.log('PHP: pass btnA');</script>");
     $studentService->insertPeopleAlumn($_POST["cedAlumn"],$_POST["snameAlumn"],
-    $_POST["nameAlumn"],$_POST["addreAlunn"],$_POST["telefAlumno"],$_POST["dateBirthAlumn"],
-    $_POST["emailpAlumno"],$_POST["genderA"]);
+    $_POST["nameAlumn"],$_POST["addreAlumn"],$_POST["telefAlumn"],$_POST["dateBirthAlumn"],
+    $_POST["genderA"],$_POST["emailpAlumn"]);
     
 }
 
@@ -302,17 +306,17 @@ if (isset($_POST['btn_subR'])) {
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Correo Personal</label>
                                             <input type="email" class="form-control" id="exampleInputEmail1"
-                                           name="emailpAlumno"      placeholder="Ingrese su email" required>
+                                           name="emailpAlumn"      placeholder="Ingrese su email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Teléfono</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                             name="telefAlumno"   placeholder="Ingrese su numero de  Teléfono" required>
+                                             name="telefAlumn"   placeholder="Ingrese su numero de  Teléfono" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Dirección</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                            name="addreAlunn"    placeholder="Ingrese su dirección" required>
+                                            name="addreAlumn"    placeholder="Ingrese su dirección" required>
                                         </div>
                                         <label for="exampleInputText">Genero:</label></br>
                                             <input type="radio" id="male" name="genderA" value="MAS" required>
