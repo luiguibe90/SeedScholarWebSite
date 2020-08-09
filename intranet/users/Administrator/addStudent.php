@@ -7,11 +7,17 @@ if (!isset($_SESSION['USU'])) {
 include '../../service/administratorService.php';
 include '../../service/studentService.php';
 $studentService = new studentService();
-if (isset($_POST["btn_subR"])) {
-    $studentService->insertPeopleStudent($_POST["cedRepresentantive"], $_POST["snRepresentative"],
+if (isset($_POST['btn_subR'])) {
+    $studentService->insertPeopleRepresentative($_POST["cedRepresentantive"], $_POST["snRepresentative"],
     $_POST["nameRepresentative"],$_POST["addressRepresentative"],$_POST["telfRepresentative"],
     $_POST["dateBrhRepresentative"],$_POST["genderR"],$_POST["pemailRepresentative"]);
-} 
+} elseif (isset($_POST['btn_subA'])){
+    echo "<script>alert('datos enviados..);</script>";
+    $studentService->insertPeopleAlumn($_POST["cedAlumn"],$_POST["snameAlumn"],
+    $_POST["nameAlumn"],$_POST["addreAlunn"],$_POST["telefAlumno"],$_POST["dateBirthAlumn"],
+    $_POST["emailpAlumno"],$_POST["genderA"]);
+    
+}
 
 ?>
 
@@ -58,7 +64,7 @@ if (isset($_POST["btn_subR"])) {
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="./index3.html" class="nav-link">Inicio</a>
+                <a href="../../login/logout.php" class="nav-link">salir</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -205,7 +211,7 @@ if (isset($_POST["btn_subR"])) {
                                     <h3 class="card-title">Formulario Representante:</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <form role="form"   data-toggle="validator" method="post"  >
+                                <form id="formRepresentative" role="form" action=""  data-toggle="validator" method="post"  >
                                     <div class="card-body">
                                         <div class="card-header">
                                             <h3 class="card-title">Datos del Representante:</h3>
@@ -213,27 +219,27 @@ if (isset($_POST["btn_subR"])) {
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Numero de Cédula</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                                name="cedRepresentantive" placeholder="Ingrese Numero de Cédula" maxlength="10">
+                                                name="cedRepresentantive" placeholder="Ingrese Numero de Cédula" maxlength="10" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nombres</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                            name="nameRepresentative"   placeholder="Ingrese sus Nombres">
+                                            name="nameRepresentative"   placeholder="Ingrese sus Nombres" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Apellidos</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                            name="snRepresentative"    placeholder="Ingrese sus pellidos">
+                                            name="snRepresentative"    placeholder="Ingrese sus pellidos" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Fecha nacimiento</label>
                                             <input type="date" class="form-control" id="exampleText"
-                                            name="dateBrhRepresentative"    placeholder="Ingrese su Fecha de Nacimiento">
+                                            name="dateBrhRepresentative"    placeholder="Ingrese su Fecha de Nacimiento" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Correo Personal</label>
                                             <input type="email" class="form-control" id="exampleInputEmail1"
-                                            name = "pemailRepresentative"    placeholder="Ingrese su email">
+                                            name = "pemailRepresentative"    placeholder="Ingrese su email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Teléfono</label>
@@ -243,12 +249,12 @@ if (isset($_POST["btn_subR"])) {
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Dirección</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                            name="addressRepresentative"    placeholder="Ingrese su dirección">
+                                            name="addressRepresentative"    placeholder="Ingrese su dirección" required>
                                         </div>
                                         <label for="exampleInputText">Genero:</label></br>
-                                            <input type="radio" id="male" name="genderR" value="MAS">
+                                            <input type="radio" id="male" name="genderR" value="MAS" required>
                                             <label for="male">Masculino</label><br>
-                                            <input type="radio" id="female" name="genderR" value="FEM">
+                                            <input type="radio" id="female" name="genderR" value="FEM" required>
                                             <label for="female">Femenino</label><br>
 
 
@@ -268,7 +274,7 @@ if (isset($_POST["btn_subR"])) {
                                     <h3 class="card-title">Formulario Alumno:</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <form role="form1" data-toggle="validator" method="post" >
+                                <form role="form" id="formAlumn"  action="" data-toggle="validator" method="post" >
                                     <div class="card-body">
                                         <div class="card-header">
                                             <h3 class="card-title">Datos del Alumno:</h3>
@@ -276,42 +282,42 @@ if (isset($_POST["btn_subR"])) {
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Numero de Cédula</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                                placeholder="Ingrese Numero de Cédula" maxlength="10">
+                                            name="cedAlumn"    placeholder="Ingrese Numero de Cédula" maxlength="10" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nombres</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                                placeholder="Ingrese sus Nombres">
+                                            name ="nameAlumn"    placeholder="Ingrese sus Nombres" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Apellidos</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                                placeholder="Ingrese sus pellidos">
+                                            name="snameAlumn"    placeholder="Ingrese sus pellidos" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Fecha nacimiento</label>
                                             <input type="date" class="form-control" id="exampleText"
-                                                placeholder="Ingrese su Fecha de Nacimiento">
+                                            name="dateBirthAlumn"   placeholder="Ingrese su Fecha de Nacimiento" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Correo Personal</label>
                                             <input type="email" class="form-control" id="exampleInputEmail1"
-                                                placeholder="Ingrese su email">
+                                           name="emailpAlumno"      placeholder="Ingrese su email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Teléfono</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                                placeholder="Ingrese su numero de  Teléfono">
+                                             name="telefAlumno"   placeholder="Ingrese su numero de  Teléfono" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Dirección</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                            name="addreA"    placeholder="Ingrese su dirección">
+                                            name="addreAlunn"    placeholder="Ingrese su dirección" required>
                                         </div>
                                         <label for="exampleInputText">Genero:</label></br>
-                                            <input type="radio" id="male" name="genderA" value="MAS">
+                                            <input type="radio" id="male" name="genderA" value="MAS" required>
                                             <label for="male">Masculino</label><br>
-                                            <input type="radio" id="female" name="genderA" value="FEM">
+                                            <input type="radio" id="female" name="genderA" value="FEM" required>
                                             <label for="female">Femenino</label><br>
                                         
                                         
