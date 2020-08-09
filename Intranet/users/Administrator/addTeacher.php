@@ -157,6 +157,48 @@ if (isset($_POST["btn_subD"])) {
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-users red-bg"></i>
+                                <p>
+                                    Periodo
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="./assignPeriod.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Gestión de Periodo</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="./assignTeacher.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Asignación Docente</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="./assignRegistration.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Matrícula</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="./assignLevel.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Niveles</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="./assignSubject.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Asignaturas</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                 </nav>
             </div>
         </aside>
