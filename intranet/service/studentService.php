@@ -63,6 +63,11 @@ include_once 'mainService.php';
 
   }
 
+  function showPeople($peopeTypeCode){
+    
+    return  $this->conex->query("CALL showTypePerson( '$peopeTypeCode' )");
+
+  }
 
 
 
