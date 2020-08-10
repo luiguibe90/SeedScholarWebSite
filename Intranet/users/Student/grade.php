@@ -124,49 +124,49 @@ if (!isset($_SESSION['USU'])) {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index2.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Ciencias Naturales</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Educación Estética</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Educación Física</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Estudios Sociales</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Lengua Extranjera</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Lengua</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Literatura</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Naturales y Sociales</p>
                   </a>
@@ -223,7 +223,7 @@ if (!isset($_SESSION['USU'])) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Información</h1>
+              <h1>Calificaciones</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -234,91 +234,59 @@ if (!isset($_SESSION['USU'])) {
           </div>
         </div><!-- /.container-fluid -->
       </section>
+      
+      <div class="card-body">
+                <div class="table-responsive">
+                  <table id="t01" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th class="text-center">Asignatura</th>
+                        <th class="text-center">Tareas</th>
+                        <th class="text-center">Talleres</th>
+                        <th class="text-center">Pruebas</th>
+                        <th class="text-center">Exámen</th>
+                        <th class="text-center">Promedio 1er Quimestre</th>
+                        <th class="text-center">Tareas</th>
+                        <th class="text-center">Talleres</th>
+                        <th class="text-center">Pruebas</th>
+                        <th class="text-center">Exámen</th>
+                        <th class="text-center">Promedio 2do Quimestre</th>
+                      </tr>
+                    </thead>
+<!--                     <tfoot>
+                      <tr>
+                        <th class="text-center">Asignatura</th>
+                        <th class="text-center">Tareas</th>
+                        <th class="text-center">Talleres</th>
+                        <th class="text-center">Pruebas</th>
+                        <th class="text-center">Exámen</th>
+                        <th class="text-center">Promedio 1er Quimestre</th>
+                        <th class="text-center">Tareas</th>
+                        <th class="text-center">Talleres</th>
+                        <th class="text-center">Pruebas</th>
+                        <th class="text-center">Exámen</th>
+                        <th class="text-center">Promedio 2do Quimestre</th>
+                      </tr>
+                    </tfoot> -->
+                    <tbody>
+                                          <tr>
+                        <td class="text-center">Física</td>
+                        <td class="text-center">6.00</td>
+                        <td class="text-center">6.00</td>
+                        <td class="text-center">6.00</td>
+                        <td class="text-center">6.00</td>
+                        <td class="text-center">6.00</td>
+                        <td class="text-center">8.00</td>
+                        <td class="text-center">9.00</td>
+                        <td class="text-center">9.00</td>
+                        <td class="text-center">9.00</td>
+                        <td class="text-center">8.75</td>
+                      </tr>
+                                            </tbody>
+                  </table>
+                </div>
+              </div>
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>9</h3>
-                  <p>Materias</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="../classes/index.html" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3>100<sup style="font-size: 20px">%</sup></h3>
-
-                  <p>Asistencia</p>
-                </div>
-                <div class="icon">
-                  <i class="icon flaticon-education"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>.</h3>
-                  <p>Horario</p>
-                </div>
-                <div class="icon">
-                  <i class="icon fa fa-calendar"></i>
-                </div>
-                <a href="../classes/classtimetable.html" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-danger">
-                <div class="inner">
-                  <h3>8</h3>
-                  <p>Actividades en el Calendario</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-calendar"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col --><
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>9</h3>
-                  <p>Calificaciones</p>
-                </div>
-                <div class="icon">
-                  <i class="ion flaticon-diploma"></i>
-                </div>
-                <a href="../classes/index.html" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-          </div>
-          <!-- /.row -->
-          <!-- Main row -->
-
-
-      </section>
       <!-- right col -->
     </div>
     <!-- /.row (main row) -->
