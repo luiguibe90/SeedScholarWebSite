@@ -4,9 +4,6 @@ include '../../service/studentService.php';
 if (!isset($_SESSION['USU'])) {
   header('Location: ../../../Seed/login.html');
 }
-$alumnoService = new AlumnoService();
-$result2 = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
-$result = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
 ?>
 
 <!DOCTYPE html>
@@ -92,12 +89,19 @@ $result = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
             <img src="../../dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <?php $temp = explode(" ", $_SESSION['USU']['PNAME'] ); ?>
-            <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME'] ); ?>
-            <a href="#" class="d-block"><?php echo $temp[0];?></br> <?php echo $temp2[0];?> </a>
+            <?php $temp = explode(" ", $_SESSION['USU']['PNAME']); ?>
+            <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME']); ?>
+            <a href="#" class="d-block"><?php echo $temp[0]; ?></br> <?php echo $temp2[0]; ?> </a>
           </div>
         </div>
-
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" style="color: white">
+          <div class="sidebar-brand-icon rotate-n-15">
+          </div>
+          <?php
+          $row = $result2->fetch_assoc();
+          ?>
+          <div class="sidebar-brand-text mx-3"><?php echo $row['NOMBRE'] ?></div>
+        </a>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -105,70 +109,34 @@ $result = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
                with font-awesome or any other icon font library -->
 
             <li class="nav-item">
-              <a href="./index.php" class="nav-link active">
+              <a href="./index.php" class="nav-link ">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Inicio
                 </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-book" aria-hidden="true"></i>
-                <span>Asignaturas</span>
-              </a>
-              <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                  <h6 class="collapse-header">Asignaturas:</h6>
-                  <?php
-                  if ($result2->num_rows > 0) {
-                    while ($row = $result2->fetch_assoc()) {
-                  ?>
-                      <a class="collapse-item" href="./subject.php?codigoAsignatura=<?php echo $row['COD_ASIGNATURA'] ?>"><i class="fas fa-fw fa-book"></i>
-                        <span><?php echo $row["NOMBRE"]; ?></span></a>
-                    <?php
-                    }
-                  } else { ?>
-                    <a class="collapse-item" href="#"><i class="fas fa-fw fa-book"></i>
-                      <span>NINGUNA</span></a>
-                  <?php } ?>
-                </div>
-              </div>
-            </li>
+            <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item active">
-              <a class="nav-link collapsed" href="./grade.php" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-check-circle"></i>
-                <span>Calificaciones</span>
+              <a class="nav-link collapsed" href="./Tarea.php?codigoAsignatura=<?php echo $_GET['codigoAsignatura'] ?>" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-edit"></i>
+                <span>Tareas</span>
               </a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
             <li class="nav-item">
-              <a class="nav-link collapsed" href="./assistance.php" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-child"></i>
-                <span>Asistencia</span>
-              </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="./schedule.php" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-calendar"></i>
-                <span>Horario</span>
-              </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="./changePassword.php" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                <span>Cambio de contraseña</span>
+              <a class="nav-link collapsed" href="./Comunicado.php?codigoAsignatura=<?php echo $_GET['codigoAsignatura'] ?>" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-bullhorn"></i>
+                <span>Comunicados</span>
               </a>
             </li>
 
+          </ul>
+          </li>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
@@ -182,125 +150,123 @@ $result = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Información</h1>
+              <h1>Tareas</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Estudiante</a></li>
-                <li class="breadcrumb-item active">Inicio</li>
+                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                <li class="breadcrumb-item">Materia</li>
+                <li class="breadcrumb-item active">Tareas</li>
               </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
       </section>
+      <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>9</h3>
-                  <p>Materias</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="./subject.php" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3>100<sup style="font-size: 20px">%</sup></h3>
+        <!-- Main Content -->
+        <div id="content">
 
-                  <p>Asistencia</p>
+          <!-- Topbar -->
+          <?php
+          include '../views/partials/header.php';
+          ?>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <!-- Page Heading -->
+            <!-- Content Row -->
+            <div class="row ">
+              <!-- Earnings (Monthly) Card Example -->
+              <?php
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  $i = 1;
+              ?>
+                  <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                      <a class="btn btn-fix ">
+                        <div class="card-body">
+                          <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                              <div class="col-auto">
+                                <i class="fas fa-edit fa-3x text-gray-300"></i><br>
+                              </div>
+                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">---TAREA---</div><br>
+                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?php echo $row['TEMA_TAREA']; ?> </div><br>
+                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?php echo $row['DETALLE_TAREA']; ?> </div><br>
+                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Fecha de entrega: <?php echo $row['FECHA_ENTREGA']; ?> </div><br>
+                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Hora de entrega: <?php echo $row['HORA_ENTREGA']; ?> </div>
+                              <div class="h5 mb-0 font-weight-bold text-gray-800">::::::::::::</div>
+                              <div class="row no-gutters align-items-center"></div>
+                              <div class="col">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                    </div>
+                  </div>
+                  </a>
+                  <!-- Earnings (Monthly) Card Example -->
+                <?php
+                }
+              } else { ?>
+                <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card border-left-primary shadow h-100 py-2">
+                    <a class="btn btn-fix ">
+                      <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                            <div class="col-auto">
+                              <i class="fas fa-child fa-3x text-gray-300"></i><br>
+                            </div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">---YUJU !!---</div><br>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">NO HAY TAREAS</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">::::::::::::</div>
+                            <div class="row no-gutters align-items-center"></div>
+                            <div class="col">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                  </div>
                 </div>
-                <div class="icon">
-                  <i class="icon flaticon-education"></i>
-                </div>
-                <a href="./assistance.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
+                </a>
+              <?php } ?>
+              </a>
             </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>.</h3>
-                  <p>Horario</p>
-                </div>
-                <div class="icon">
-                  <i class="icon fa fa-calendar"></i>
-                </div>
-                <a href="./schedule.php" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-danger">
-                <div class="inner">
-                  <h3>8</h3>
-                  <p>Actividades en el Calendario</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-calendar"></i>
-                </div>
-                <a href="./Comunicado.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col --><
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>9</h3>
-                  <p>Calificaciones</p>
-                </div>
-                <div class="icon">
-                  <i class="ion flaticon-diploma"></i>
-                </div>
-                <a href="./grade.php" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
+            </a>
           </div>
-          <!-- /.row -->
-          <!-- Main row -->
+        </div>
 
 
-      </section>
-      <!-- right col -->
-    </div>
-    <!-- /.row (main row) -->
-  </div><!-- /.container-fluid -->
-  </section>
+
+      </div>
+      <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+
 
   </div>
 
+
+
+
   <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <p>
-                Copyright &copy;
-                <script>
-                    document.write(new Date().getFullYear());
-                </script> All rights reserved | SeedSchool
-            </p>
-        </div>
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <p>
+        Copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script> All rights reserved | SeedSchool
+      </p>
+    </div>
 
-    </footer>
-
-    
+  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

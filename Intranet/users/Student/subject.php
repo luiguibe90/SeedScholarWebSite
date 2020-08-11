@@ -1,8 +1,12 @@
 <?php
 session_start();
+include '../../service/studentService.php';
 if (!isset($_SESSION['USU'])) {
   header('Location: ../../../Seed/login.html');
 }
+$alumnoService = new AlumnoService();
+isset($_GET['codigoAsignatura']);
+$result=$alumnoService->findSubjetByCode(($_GET['codigoAsignatura']));
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +89,7 @@ if (!isset($_SESSION['USU'])) {
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="../../dist/img/USUm1.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="../../dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <?php $temp = explode(" ", $_SESSION['USU']['PNAME']); ?>
@@ -93,7 +97,14 @@ if (!isset($_SESSION['USU'])) {
             <a href="#" class="d-block"><?php echo $temp[0]; ?></br> <?php echo $temp2[0]; ?> </a>
           </div>
         </div>
-
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" style="color: white">
+          <div class="sidebar-brand-icon rotate-n-15">
+          </div>
+          <?php
+          $row = $result2->fetch_assoc();
+          ?>
+          <div class="sidebar-brand-text mx-3"><?php echo $row['NOMBRE'] ?></div>
+        </a>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -108,41 +119,27 @@ if (!isset($_SESSION['USU'])) {
                 </p>
               </a>
             </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Matemáticas
-                  <i class="right fas fa-angle-left"></i>
-                </p>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item active">
+              <a class="nav-link collapsed" href="./Tarea.php?codigoAsignatura=<?php echo $_GET['codigoAsignatura'] ?>" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-edit"></i>
+                <span>Tareas</span>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link active">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Anuncios</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./homework.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Tareas</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Archivos</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Tutor</p>
-                  </a>
-                </li>
-              </ul>
             </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="./Comunicado.php?codigoAsignatura=<?php echo $_GET['codigoAsignatura'] ?>" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-bullhorn"></i>
+                <span>Comunicados</span>
+              </a>
+            </li>
+
+          </ul>
+          </li>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
@@ -161,70 +158,36 @@ if (!isset($_SESSION['USU'])) {
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                <li class="breadcrumb-item">Matemáticas</li>
-                <li class="breadcrumb-item active">Anuncios</li>
+                <li class="breadcrumb-item">Materia</li>
               </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
       </section>
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <div class="col-md-12">
-            <div class="card card-default">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-bullhorn"></i>
-                  Anuncios
-                </h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <div class="callout callout-danger">
-                  <h5>I am a danger callout!</h5>
+      <div id="content-wrapper" class="d-flex flex-column">
 
-                  <p>There is a problem that we need to fix. A wonderful serenity has taken possession of my entire
-                    soul,
-                    like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                </div>
-                <div class="callout callout-info">
-                  <h5>I am an info callout!</h5>
+<!-- Main Content -->
+<div id="content">
 
-                  <p>Follow the steps to continue to payment.</p>
-                </div>
-                <div class="callout callout-warning">
-                  <h5>I am a warning callout!</h5>
-
-                  <p>This is a yellow callout.</p>
-                </div>
-                <div class="callout callout-success">
-                  <h5>I am a success callout!</h5>
-
-                  <p>This is a green callout.</p>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-        <!-- END ALERTS AND CALLOUTS -->
-
-      </section>
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>Calificaciones</h1>
-            </div>
-            <!-- Main content -->
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
+    <!-- Topbar -->
+    <?php
+include '../views/partials/header.php';
+?><?php
+if ($result->num_rows > 0) {
+//$row1 = $result->fetch_assoc();
+?>
+    <div class="containe ">
+        <div class="h1 mb-4 text-primary-800 font-weight-bold text-primary text-center" style="margin-top: 20%">
+            <?php echo $row["NOMBRE"]; ?></div>
+        <div class="h4 text-primary-800 text-primary text-center" style="margin-top: 10%"><?php echo $row['NOMBRE_NIVEL'];?> - <?php echo $row['NIVEL'];?>  </div>
+    </div>
+    <?php
+    }
+else { ?>
+    <div class="containe ">
+        <h5 class="h1 mb-4 text-primary-800 text-primary text-center" style="margin-top: 20%">NO HAY
+            ASIGNATURA</h5>
     </div>
 
   </div>
@@ -240,16 +203,16 @@ if (!isset($_SESSION['USU'])) {
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <p>
-                Copyright &copy;
-                <script>
-                    document.write(new Date().getFullYear());
-                </script> All rights reserved | SeedSchool
-            </p>
-        </div>
+    <div class="float-right d-none d-sm-block">
+      <p>
+        Copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script> All rights reserved | SeedSchool
+      </p>
+    </div>
 
-    </footer>
+  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

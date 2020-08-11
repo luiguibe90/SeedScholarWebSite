@@ -1,8 +1,15 @@
 <?php
 session_start();
+include '../../service/studentService.php';
 if (!isset($_SESSION['USU'])) {
   header('Location: ../../../Seed/login.html');
 }
+$alumnoService = new AlumnoService();
+$result2 = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
+$result = $alumnoService->findAssistance($_SESSION['EST']['COD_PERSONA']);
+$asistencia="ASISTIÓ";
+$faltaJustificada="FALTA JUSTIFICADA";
+$faltaInjustificada="FALTA INJUSTIFICADA";
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +92,7 @@ if (!isset($_SESSION['USU'])) {
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="../../dist/img/USUm1.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="../../dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <?php $temp = explode(" ", $_SESSION['USU']['PNAME'] ); ?>
@@ -108,105 +115,60 @@ if (!isset($_SESSION['USU'])) {
                 </p>
               </a>
             </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Materias
-                  <i class="right fas fa-angle-left"></i>
-                </p>
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                <span>Asignaturas</span>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Matemáticas</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index2.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Ciencias Naturales</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Educación Estética</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Educación Física</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Estudios Sociales</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Lengua Extranjera</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Lengua</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Literatura</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Naturales y Sociales</p>
-                  </a>
-                </li>
-              </ul>
+              <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Asignaturas:</h6>
+                  <?php
+                  if ($result2->num_rows > 0) {
+                    while ($row = $result2->fetch_assoc()) {
+                  ?>
+                      <a class="collapse-item" href="./subject.php?codigoAsignatura=<?php echo $row['COD_ASIGNATURA'] ?>"><i class="fas fa-fw fa-book"></i>
+                        <span><?php echo $row["NOMBRE"]; ?></span></a>
+                    <?php
+                    }
+                  } else { ?>
+                    <a class="collapse-item" href="#"><i class="fas fa-fw fa-book"></i>
+                      <span>NINGUNA</span></a>
+                  <?php } ?>
+                </div>
+              </div>
             </li>
+            <hr class="sidebar-divider">
 
-            <li class="nav-item has-treeview">
-              <a href="./grade.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Calificaciones
-                </p>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item active">
+              <a class="nav-link collapsed" href="./grade.php" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-check-circle"></i>
+                <span>Calificaciones</span>
               </a>
             </li>
-
-            <li class="nav-item has-treeview">
-              <a href="./assistance.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Asistencia
-                </p>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="./assistance.php" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-child"></i>
+                <span>Asistencia</span>
               </a>
             </li>
-
-            <li class="nav-item has-treeview">
-              <a href="./schedule.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Horario
-                </p>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="./schedule.php" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-calendar"></i>
+                <span>Horario</span>
               </a>
             </li>
-
-            <li class="nav-item has-treeview">
-              <a href="./changePassword.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Cambio de contraseña
-                </p>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="./changePassword.php" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <span>Cambio de contraseña</span>
               </a>
             </li>
 
@@ -223,12 +185,12 @@ if (!isset($_SESSION['USU'])) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Información</h1>
+              <h1>Asistencia</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                <li class="breadcrumb-item active">Inicio</li>
+                <li class="breadcrumb-item active">Asistencia</li>
               </ol>
             </div>
           </div>
@@ -252,61 +214,44 @@ if (!isset($_SESSION['USU'])) {
                       </tr>
                     </tfoot> -->
                     <tbody>
-                                          <tr>
-                        <td class="text-center">2020-08-01</td>
-                                                        <td class="text-center ">
+                    <?php
+                       if ($result->num_rows > 0) {
+                           while ($row = $result->fetch_assoc()) {
+                    ?>
+                      <tr>
+                        <td class="text-center"><?php echo $row["FECHA"]; ?></td>
+                          <?php if($row["ESTADO"]=="ASI"){?>
+                            <td class="text-center ">
+                            <div class="success icon-split">
+                              <span class="icon text-success">
+                              <i class="fas fa-check"></i></span>
+                              <span class="text-success">ASISTIÓ</span>
+                            </div></td>
+                            <?php } else if($row["ESTADO"]=="FJU"){  ?>
+                              <td class="text-center ">
                               <div class="success icon-split">
                                 <span class="icon text-info">
                                 <i class="fas fa-flag"></i></span>
                                 <span class="text-info">FALTA JUSTIFICADA</span>
                               </div></td>
-                                                  </tr>
-                                            <tr>
-                        <td class="text-center">2020-08-02</td>
-                                                        <td class="text-center ">
+                            <?php } else if($row["ESTADO"]=="FIN"){  ?>
+                              <td class="text-center ">
                               <div class="success icon-split">
-                                <span class="icon text-info">
-                                <i class="fas fa-flag"></i></span>
-                                <span class="text-info">FALTA JUSTIFICADA</span>
+                                <span class="icon text-danger">
+                                <i class="fas fa-exclamation-triangle"></i></span>
+                                <span class="text-danger">FALTA INJUSTIFICADA</span>
                               </div></td>
-                                                  </tr>
-                                            <tr>
-                        <td class="text-center">2020-08-04</td>
-                                                        <td class="text-center ">
-                              <div class="success icon-split">
-                                <span class="icon text-info">
-                                <i class="fas fa-flag"></i></span>
-                                <span class="text-info">FALTA JUSTIFICADA</span>
-                              </div></td>
-                                                  </tr>
-                                            <tr>
-                        <td class="text-center">2020-08-05</td>
-                                                        <td class="text-center ">
-                              <div class="success icon-split">
-                                <span class="icon text-info">
-                                <i class="fas fa-flag"></i></span>
-                                <span class="text-info">FALTA JUSTIFICADA</span>
-                              </div></td>
-                                                  </tr>
-                                            <tr>
-                        <td class="text-center">2020-08-08</td>
-                                                        <td class="text-center ">
-                              <div class="success icon-split">
-                                <span class="icon text-info">
-                                <i class="fas fa-flag"></i></span>
-                                <span class="text-info">FALTA JUSTIFICADA</span>
-                              </div></td>
-                                                  </tr>
-                                            <tr>
-                        <td class="text-center">2020-08-31</td>
-                                                        <td class="text-center ">
-                              <div class="success icon-split">
-                                <span class="icon text-info">
-                                <i class="fas fa-flag"></i></span>
-                                <span class="text-info">FALTA JUSTIFICADA</span>
-                              </div></td>
-                                                  </tr>
-                                            </tbody>
+                            <?php } ?>
+                      </tr>
+                      <?php
+                             }
+                         } 
+                         else { ?>
+                             <tr>
+                                 <td colspan="2" class="text-center">NO HAY REGISTROS</td>
+                             </tr>
+                      <?php } ?>
+                      </tbody>
                   </table>
                 </div>
               </div>
