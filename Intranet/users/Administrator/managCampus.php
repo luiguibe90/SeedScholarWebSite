@@ -89,7 +89,7 @@ $countTeachers = $administratorService->countTypePeople(3);
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-                                <li class="breadcrumb-item active">GestionSedes</li>
+                                <li class="breadcrumb-item active">Gestion Sede</li>
                             </ol>
                         </div>
                     </div>
@@ -101,7 +101,7 @@ $countTeachers = $administratorService->countTypePeople(3);
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3><?php echo $countTeachers ?></h3>
-                                <p>Visualizar Sedes</p>
+                                <p>Visualizar Sede</p>
                             </div>
                             <div class="icon">
                                 <i class="fa fa-list red-bg"></i>
@@ -109,7 +109,7 @@ $countTeachers = $administratorService->countTypePeople(3);
                             <a href="viewCampus.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a><!-- Agregar para ver los campus-->
                         </div>
                     </div>
-                    <div class="col-lg-3 col-6">
+                    <!-- <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3><?php echo $countTeachers ?></h3>
@@ -118,21 +118,10 @@ $countTeachers = $administratorService->countTypePeople(3);
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
                             </div>
-                            <a href="addCampus.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a><!-- aqui agregar el archivo para agregar las sedes-->
+                            <a href="addCampus.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3><?php echo $countTeachers ?></h3>
-                                <p>Modificar Sede</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                            <a href="modifyCampus.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a><!-- crear archivo para modificar campus-->
-                        </div>
-                    </div>
+                    </div> -->
+                    
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
