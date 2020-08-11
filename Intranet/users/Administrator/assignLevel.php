@@ -47,7 +47,7 @@ $aspirantService = new aspirantService();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-    <title>Exámen 2do Parcial</title>
+    
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -55,32 +55,7 @@ $aspirantService = new aspirantService();
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="./index3.html" class="nav-link">Inicio</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
-            </ul>
-
-            <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </nav>
+        <?php include("../../views/barNav.php");?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
@@ -105,99 +80,7 @@ $aspirantService = new aspirantService();
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-
-                        <li class="nav-item">
-                            <a href="index.php" class="nav-link active">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Inicio
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-header">Gestionar</li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-users red-bg"></i>
-                                <p>
-                                    Personas
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./managTeacher.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Profesores</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./managStudent.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Alumnos</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../../index3.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Representantes</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./managAspirant.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Aspirantes</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-users red-bg"></i>
-                                <p>
-                                    Periodo
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./assignPeriod.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Gestión de Periodo</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./assignTeacher.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Asignación Docente</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./assignRegistration.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Matrícula</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./assignLevel.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Niveles</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./assignSubject.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Asignaturas</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                </nav>
+                <?php include("../../views/menuAdmin.php");?>
             </div>
         </aside>
         <!-- Content Wrapper. Contains page content -->
@@ -649,16 +532,6 @@ $aspirantService = new aspirantService();
     <script src="../../dist/js/demo.js"></script>
 
 </body>
-    <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <p>
-                    Copyright &copy;
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script> All rights reserved | SeedSchool
-                </p>
-            </div>
-
-        </footer>
+    <?php include("../../views/footer.php");?>
 
 </html>
