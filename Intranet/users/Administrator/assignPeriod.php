@@ -44,8 +44,7 @@ $aspirantService = new aspirantService();
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 </head>
 
@@ -54,33 +53,7 @@ $aspirantService = new aspirantService();
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="./index3.html" class="nav-link">Inicio</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
-            </ul>
-
-            <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                        aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </nav>
+        <?php include("../../views/barNav.php"); ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
@@ -105,100 +78,7 @@ $aspirantService = new aspirantService();
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-
-                        <li class="nav-item">
-                            <a href="index.php" class="nav-link active">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Inicio
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-header">Gestionar</li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-users red-bg"></i>
-                                <p>
-                                    Personas
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./managTeacher.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Profesores</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./managStudent.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Alumnos</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../../index3.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Representantes</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./managAspirant.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Aspirantes</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-users red-bg"></i>
-                                <p>
-                                    Periodo
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./assignPeriod.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Gestión de Periodo</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./assignTeacher.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Asignación Docente</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./assignRegistration.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Matrícula</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./managLevel.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Niveles</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./assignSubject.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Asignaturas</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                </nav>
+                <?php include("../../views/menuAdmin.php"); ?>
             </div>
         </aside>
         <!-- Content Wrapper. Contains page content -->
@@ -231,11 +111,9 @@ $aspirantService = new aspirantService();
                                 <b>Periodos Lectivos</b>
                             </div>
                             <div class="card-body">
-                                <center><button type="button" class="btn btn-success" data-toggle='modal'
-                                        data-target='#newPeriod'>Nuevo Periodo</button></center>
+                                <center><button type="button" class="btn btn-success" data-toggle='modal' data-target='#newPeriod'>Nuevo Periodo</button></center>
                                 <br><br>
-                                <table class="display responsive nowrap" style="width:100%; cursor: pointer;"
-                                    id="tablePeriods">
+                                <table class="display responsive nowrap" style="width:100%; cursor: pointer;" id="tablePeriods">
                                     <thead>
                                         <tr>
                                             <th>Codigo Periodo</th>
@@ -254,8 +132,7 @@ $aspirantService = new aspirantService();
 
 
                     <!-- Modal -->
-                    <div class="modal fade" id="newPeriod" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="newPeriod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -278,22 +155,18 @@ $aspirantService = new aspirantService();
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Fecha Inicio Periodo</span>
                                         </div>
-                                        <input type="date" class="form-control" placeholder="Nombre"
-                                            aria-label="Username" aria-describedby="basic-addon1" id="dateStartPeriod">
+                                        <input type="date" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" id="dateStartPeriod">
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Fecha Final Periodo</span>
                                         </div>
-                                        <input type="date" class="form-control" placeholder="Nombre"
-                                            aria-label="Username" aria-describedby="basic-addon1" id="dateEndPeriod">
+                                        <input type="date" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" id="dateEndPeriod">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success"
-                                        onclick="crearNuevo()">Guardar</button>
-                                    <button id="cerrar" type="button" class="btn btn-danger"
-                                        data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-success" onclick="crearNuevo()">Guardar</button>
+                                    <button id="cerrar" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -301,8 +174,7 @@ $aspirantService = new aspirantService();
 
 
                     <!-- Modal Change Period-->
-                    <div class="modal fade" id="changePeriod" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="changePeriod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -327,22 +199,19 @@ $aspirantService = new aspirantService();
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Fecha Inicio</span>
                                         </div>
-                                        <input type="date" class="form-control" placeholder="Nombre"
-                                            aria-label="Username" aria-describedby="basic-addon1" id="moddateStartPeriod">
+                                        <input type="date" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" id="moddateStartPeriod">
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Fecha Final</span>
                                         </div>
-                                        <input type="date" class="form-control" placeholder="Nombre"
-                                            aria-label="Username" aria-describedby="basic-addon1" id="moddateEndPeriod">
+                                        <input type="date" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" id="moddateEndPeriod">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" onclick="guardarCambios()">Guardar
                                         Cambios</button>
-                                    <button id="cerrarModal" type="button" class="btn btn-danger"
-                                        data-dismiss="modal">Cerrar</button>
+                                    <button id="cerrarModal" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -350,96 +219,95 @@ $aspirantService = new aspirantService();
                 </div>
 
                 <br><br>
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <div class="card">
-                <div class="card-header">
-                    <b>Cronograma por Periodo</b>
-                </div>
-                <div class="card-body">
-                    <center><button type="button" class="btn btn-success" data-toggle='modal'
-                            data-target='#newSchedule'>Nuevo Cronograma</button></center>
-                    <br><br>
-                    <center>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Periodo</label>
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <b>Cronograma por Periodo</b>
                             </div>
-                            <select class="custom-select" id="selectModulos">
+                            <div class="card-body">
+                                <center><button type="button" class="btn btn-success" data-toggle='modal' data-target='#newSchedule'>Nuevo Cronograma</button></center>
+                                <br><br>
+                                <center>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Periodo</label>
+                                        </div>
+                                        <select class="custom-select" id="selectModulos">
 
-                            </select>
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button" onclick="tablaFunciones()">Buscar</button>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button" onclick="tablaFunciones()">Buscar</button>
+                                        </div>
+                                    </div>
+                                </center>
+                                <br><br>
+                                <table class="display responsive nowrap" style="width:100%; cursor: pointer;" id="tblfunc">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo Cronograma</th>
+                                            <th>Tipo</th>
+                                            <th>Descripcion</th>
+                                            <th>Fecha</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </center>
-                    <br><br>
-                    <table class="display responsive nowrap" style="width:100%; cursor: pointer;" id="tblfunc">
-                        <thead>
-                            <tr>
-                                <th>Codigo Cronograma</th>
-                                <th>Tipo</th>
-                                <th>Descripcion</th>
-                                <th>Fecha</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div><br><br>
+                    </div>
+                </div><br><br>
 
 
-    <!-- Modal  Menu Select Funcionalidad-->
-    <div class="modal fade" id="newSchedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Cronograma</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <!-- Modal  Menu Select Funcionalidad-->
+                <div class="modal fade" id="newSchedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Nuevo Cronograma</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <label>Seleccionar el Periodo: </label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Periodo</label>
+                                    </div>
+                                    <select class="custom-select" id="selectPeriodShedule">
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Tipo</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Tipo" id="typeShedule">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Descripción</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Descripción" id="descripShedule">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Fecha</span>
+                                    </div>
+                                    <input type="date" class="form-control" placeholder="Fecha" id="dateShedule">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onclick="guardarFuncionNuevo()">Guardar Cambios</button>
+                                <button id="cerrarNue" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <label>Seleccionar el Periodo: </label>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Periodo</label>
-                        </div>
-                        <select class="custom-select" id="selectPeriodShedule">
-                        </select>                        
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Tipo</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Tipo" id="typeShedule">
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Descripción</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Descripción" id="descripShedule">
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Fecha</span>
-                        </div>
-                        <input type="date" class="form-control" placeholder="Fecha" id="dateShedule">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="guardarFuncionNuevo()">Guardar Cambios</button>
-                    <button id="cerrarNue" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
@@ -447,221 +315,226 @@ $aspirantService = new aspirantService();
 
 
 
-
-
-
-
-
-
-
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-                crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-                integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-                crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
             <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
             <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
             <script>
-            var id
-            var tblfunc
-            var roles
-            var idRol
-            var idModulo
+                var id
+                var tblfunc
+                var roles
+                var idRol
+                var idModulo
 
-            $(document).ready(function() {
+                $(document).ready(function() {
 
-                var tablePeriods = $('#tablePeriods').DataTable({
-                    "ajax": "./periodGetService.php?listPeriod=true",
-                    "columns": [{
-                            "data": "COD_PERIODO_LECTIVO"
-                        },
-                        {
-                            "data": "ESTADO"
-                        },
-                        {
-                            "data": "FECHA_INICIO"
-                        },
-                        {
-                            "data": "FECHA_FIN"
-                        },
-                        {
-                            "data": null,
-                            "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#changePeriod'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarModulo()'>Desactivar</button>",
-                            orderData: false
-                        },
-                    ],
-                    "language": {
-                        "emptyTable": "No hay información",
-                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                        "infoPostFix": "",
-                        "thousands": ",",
-                        "lengthMenu": "Mostrar _MENU_ Entradas",
-                        "processing": "Procesando...",
-                        "search": "Buscar:",
-                        "zeroRecords": "Sin resultados encontrados",
-                        "paginate": {
-                            "first": "Primero",
-                            "last": "Ultimo",
-                            "next": "Siguiente",
-                            "previous": "Anterior"
+                    var tablePeriods = $('#tablePeriods').DataTable({
+                        "ajax": "./periodGetService.php?listPeriod=true",
+                        "columns": [{
+                                "data": "COD_PERIODO_LECTIVO"
+                            },
+                            {
+                                "data": "ESTADO"
+                            },
+                            {
+                                "data": "FECHA_INICIO"
+                            },
+                            {
+                                "data": "FECHA_FIN"
+                            },
+                            {
+                                "data": null,
+                                "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#changePeriod'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarModulo()'>Desactivar</button>",
+                                orderData: false
+                            },
+                        ],
+                        "language": {
+                            "emptyTable": "No hay información",
+                            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                            "infoPostFix": "",
+                            "thousands": ",",
+                            "lengthMenu": "Mostrar _MENU_ Entradas",
+                            "processing": "Procesando...",
+                            "search": "Buscar:",
+                            "zeroRecords": "Sin resultados encontrados",
+                            "paginate": {
+                                "first": "Primero",
+                                "last": "Ultimo",
+                                "next": "Siguiente",
+                                "previous": "Anterior"
+                            }
                         }
-                    }
-                });
-                $('#tablePeriods tbody').on('click', 'td', function() {
-                    var data = tablePeriods.row($(this).parents('tr')).data();
-                    id = data['COD_PERIODO_LECTIVO'];
-                    document.getElementById('modstatePeriod').value = data['ESTADO']
-                    document.getElementById('moddateStartPeriod').value = data['FECHA_INICIO']
-                    document.getElementById('moddateEndPeriod').value = data['FECHA_FIN']
+                    });
+                    $('#tablePeriods tbody').on('click', 'td', function() {
+                        var data = tablePeriods.row($(this).parents('tr')).data();
+                        id = data['COD_PERIODO_LECTIVO'];
+                        document.getElementById('modstatePeriod').value = data['ESTADO']
+                        document.getElementById('moddateStartPeriod').value = data['FECHA_INICIO']
+                        document.getElementById('moddateEndPeriod').value = data['FECHA_FIN']
+
+                    });
+
+                    $.fn.dataTable.ext.errMode = 'none'
+
+                    llenarSelectModulos()
 
                 });
 
-                $.fn.dataTable.ext.errMode = 'none'
-                
-                llenarSelectModulos()
 
-            });
-
-
-            function eliminarModulo() {
-                $.ajax({
-                    url: "./consultas/modulos.php?eliminarModulo=true&id=" + id,
-                    data: {},
-                    type: "POST",
-                    success: function(data) {
-                        if (data == "exito") {
-                            alert("El módulo ha sido eliminado exitosamente")
-                            $('#tablePeriods').DataTable().ajax.reload()
-                        }
-                    },
-                });
-            }
-
-            function guardarCambios() {
-
-                var estate = document.getElementById('modstatePeriod').value
-                var dateInitial = document.getElementById('moddateStartPeriod').value
-                var dateFinal = document.getElementById('moddateEndPeriod').value
-                $.ajax({
-                    url: "periodGetService.php?editarModulo=true&id=" + id,
-                    data: {
-                        estate: estate,
-                        dateInitial: dateInitial,
-                        dateFinal: dateFinal
-                    },
-                    type: "POST",
-                    success: function(data) {
-                        if (data == "exito") {
-                            alert("El módulo ha sido editado exitosamente")
-                            $('#cerrarModal').click()
-                            $('#tablePeriods').DataTable().ajax.reload()
-                        }
-                    },
-                });
-            }
-
-            function crearNuevo() {
-                var stateP = document.getElementById('statePeriod').value
-                var dateI = document.getElementById('dateStartPeriod').value
-                var dateF = document.getElementById('dateEndPeriod').value
-                $.ajax({
-                    url: "./periodGetService.php?newPeriod=true",
-                    data: {
-                        stateP: stateP,
-                        dateI: dateI,
-                        dateF: dateF
-                    },
-                    type: "POST",
-                    success: function(data) {
-                        if (data == "exito") {
-                            alert("El módulo ha sido registrado exitosamente")
-                            $('#cerrar').click()
-                            $('#tablePeriods').DataTable().ajax.reload()
-                        }
-                    },
-                });
-            }
-
-            function llenarSelectModulos() {
-            $.ajax({
-                url: "periodGetService.php?selectPeriods=true",
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data != "mal") {
-                        var selectModulos = document.getElementById("selectModulos");
-                        selectModulos.innerHTML = data;
-                        var selectPeriodShedule = document.getElementById("selectPeriodShedule");
-                        selectPeriodShedule.innerHTML = data;
-                    }
+                function eliminarModulo() {
+                    $.ajax({
+                        url: "./consultas/modulos.php?eliminarModulo=true&id=" + id,
+                        data: {},
+                        type: "POST",
+                        success: function(data) {
+                            if (data == "exito") {
+                                alert("El módulo ha sido eliminado exitosamente")
+                                $('#tablePeriods').DataTable().ajax.reload()
+                            }
+                        },
+                    });
                 }
-            });
-            }
-            function guardarFuncionNuevo() {
-            var type = document.getElementById('typeShedule').value
-            var descrip = document.getElementById('descripShedule').value
-            var dateS = document.getElementById('dateShedule').value
-            var selectNewPeriod = document.getElementById('selectPeriodShedule').value
-            $.ajax({
-                url: "./periodGetService.php?newShedule=true",
-                data: { type:type,descrip:descrip,dateS:dateS, modulo: selectNewPeriod },
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("El nuevo cronograma ha sido guardado exitosamente")
-                        $('#cerrarNue').click()
-                        $('#tblfunc').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
 
-        function tablaFunciones() {
-            var modulo = document.getElementById('selectModulos').value
-            tblfunc = $('#tblfunc').DataTable({
-                "ajax": "periodGetService.php?listShedules=true&modulo=" + modulo,
-                "columns": [
-                    { "data": "COD_REGLA_PERIODO", visible: false },
-                    { "data": "TIPO" },
-                    { "data": "NOMBRE_REGLA" },
-                    { "data": "VALOR" },
-                    { "data": null, "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#modalFuncion'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarFuncion()'>Eliminar</button>", orderData: false },
-                ],
-                "destroy": true,
-                "language": {
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
+                function guardarCambios() {
+
+                    var estate = document.getElementById('modstatePeriod').value
+                    var dateInitial = document.getElementById('moddateStartPeriod').value
+                    var dateFinal = document.getElementById('moddateEndPeriod').value
+                    $.ajax({
+                        url: "periodGetService.php?editarModulo=true&id=" + id,
+                        data: {
+                            estate: estate,
+                            dateInitial: dateInitial,
+                            dateFinal: dateFinal
+                        },
+                        type: "POST",
+                        success: function(data) {
+                            if (data == "exito") {
+                                alert("El módulo ha sido editado exitosamente")
+                                $('#cerrarModal').click()
+                                $('#tablePeriods').DataTable().ajax.reload()
+                            }
+                        },
+                    });
                 }
-            });
-            $('#tblfunc tbody').on('click', 'td', function () {
-                var data = tblfunc.row($(this).parents('tr')).data();
-                idFunc = data['COD_FUNCIONALIDAD'];
-                document.getElementById('urlPrincipal').value = data['URL_PRINCIPAL']
-                document.getElementById('nombreFuncion').value = data['NOMBRE']
-                document.getElementById('descriFuncion').value = data['DESCRIPCION']
-            });
-        }
+
+                function crearNuevo() {
+                    var stateP = document.getElementById('statePeriod').value
+                    var dateI = document.getElementById('dateStartPeriod').value
+                    var dateF = document.getElementById('dateEndPeriod').value
+                    $.ajax({
+                        url: "./periodGetService.php?newPeriod=true",
+                        data: {
+                            stateP: stateP,
+                            dateI: dateI,
+                            dateF: dateF
+                        },
+                        type: "POST",
+                        success: function(data) {
+                            if (data == "exito") {
+                                alert("El módulo ha sido registrado exitosamente")
+                                $('#cerrar').click()
+                                $('#tablePeriods').DataTable().ajax.reload()
+                            }
+                        },
+                    });
+                }
+
+                function llenarSelectModulos() {
+                    $.ajax({
+                        url: "periodGetService.php?selectPeriods=true",
+                        data: {},
+                        type: "POST",
+                        success: function(data) {
+                            if (data != "mal") {
+                                var selectModulos = document.getElementById("selectModulos");
+                                selectModulos.innerHTML = data;
+                                var selectPeriodShedule = document.getElementById("selectPeriodShedule");
+                                selectPeriodShedule.innerHTML = data;
+                            }
+                        }
+                    });
+                }
+
+                function guardarFuncionNuevo() {
+                    var type = document.getElementById('typeShedule').value
+                    var descrip = document.getElementById('descripShedule').value
+                    var dateS = document.getElementById('dateShedule').value
+                    var selectNewPeriod = document.getElementById('selectPeriodShedule').value
+                    $.ajax({
+                        url: "./periodGetService.php?newShedule=true",
+                        data: {
+                            type: type,
+                            descrip: descrip,
+                            dateS: dateS,
+                            modulo: selectNewPeriod
+                        },
+                        type: "POST",
+                        success: function(data) {
+                            if (data == "exito") {
+                                alert("El nuevo cronograma ha sido guardado exitosamente")
+                                $('#cerrarNue').click()
+                                $('#tblfunc').DataTable().ajax.reload()
+                            }
+                        },
+                    });
+                }
+
+                function tablaFunciones() {
+                    var modulo = document.getElementById('selectModulos').value
+                    tblfunc = $('#tblfunc').DataTable({
+                        "ajax": "periodGetService.php?listShedules=true&modulo=" + modulo,
+                        "columns": [{
+                                "data": "COD_REGLA_PERIODO",
+                                visible: false
+                            },
+                            {
+                                "data": "TIPO"
+                            },
+                            {
+                                "data": "NOMBRE_REGLA"
+                            },
+                            {
+                                "data": "VALOR"
+                            },
+                            {
+                                "data": null,
+                                "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#modalFuncion'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarFuncion()'>Eliminar</button>",
+                                orderData: false
+                            },
+                        ],
+                        "destroy": true,
+                        "language": {
+                            "emptyTable": "No hay información",
+                            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                            "infoPostFix": "",
+                            "thousands": ",",
+                            "lengthMenu": "Mostrar _MENU_ Entradas",
+                            "processing": "Procesando...",
+                            "search": "Buscar:",
+                            "zeroRecords": "Sin resultados encontrados",
+                            "paginate": {
+                                "first": "Primero",
+                                "last": "Ultimo",
+                                "next": "Siguiente",
+                                "previous": "Anterior"
+                            }
+                        }
+                    });
+                    $('#tblfunc tbody').on('click', 'td', function() {
+                        var data = tblfunc.row($(this).parents('tr')).data();
+                        idFunc = data['COD_FUNCIONALIDAD'];
+                        document.getElementById('urlPrincipal').value = data['URL_PRINCIPAL']
+                        document.getElementById('nombreFuncion').value = data['NOMBRE']
+                        document.getElementById('descriFuncion').value = data['DESCRIPCION']
+                    });
+                }
             </script>
 
 
@@ -681,7 +554,7 @@ $aspirantService = new aspirantService();
         <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
-        $.widget.bridge('uibutton', $.ui.button)
+            $.widget.bridge('uibutton', $.ui.button)
         </script>
         <!-- Bootstrap 4 -->
         <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -714,7 +587,7 @@ $aspirantService = new aspirantService();
         <p>
             Copyright &copy;
             <script>
-            document.write(new Date().getFullYear());
+                document.write(new Date().getFullYear());
             </script> All rights reserved | SeedSchool
         </p>
     </div>

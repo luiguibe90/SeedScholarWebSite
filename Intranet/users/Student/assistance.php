@@ -124,49 +124,49 @@ if (!isset($_SESSION['USU'])) {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index2.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Ciencias Naturales</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Educación Estética</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Educación Física</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Estudios Sociales</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Lengua Extranjera</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Lengua</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Literatura</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Naturales y Sociales</p>
                   </a>
@@ -235,90 +235,87 @@ if (!isset($_SESSION['USU'])) {
         </div><!-- /.container-fluid -->
       </section>
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>9</h3>
-                  <p>Materias</p>
+      <div class="row justify-content-center ">
+          <div class="card-body">
+                <div class="table-responsive">
+                  <table id="t01" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th class="text-center">Fecha</th>
+                        <th class="text-center">Estado</th>
+                      </tr>
+                    </thead>
+<!--                     <tfoot>
+                      <tr>
+                        <th class="text-center">Fecha</th>
+                        <th class="text-center">Estado</th>
+                      </tr>
+                    </tfoot> -->
+                    <tbody>
+                                          <tr>
+                        <td class="text-center">2020-08-01</td>
+                                                        <td class="text-center ">
+                              <div class="success icon-split">
+                                <span class="icon text-info">
+                                <i class="fas fa-flag"></i></span>
+                                <span class="text-info">FALTA JUSTIFICADA</span>
+                              </div></td>
+                                                  </tr>
+                                            <tr>
+                        <td class="text-center">2020-08-02</td>
+                                                        <td class="text-center ">
+                              <div class="success icon-split">
+                                <span class="icon text-info">
+                                <i class="fas fa-flag"></i></span>
+                                <span class="text-info">FALTA JUSTIFICADA</span>
+                              </div></td>
+                                                  </tr>
+                                            <tr>
+                        <td class="text-center">2020-08-04</td>
+                                                        <td class="text-center ">
+                              <div class="success icon-split">
+                                <span class="icon text-info">
+                                <i class="fas fa-flag"></i></span>
+                                <span class="text-info">FALTA JUSTIFICADA</span>
+                              </div></td>
+                                                  </tr>
+                                            <tr>
+                        <td class="text-center">2020-08-05</td>
+                                                        <td class="text-center ">
+                              <div class="success icon-split">
+                                <span class="icon text-info">
+                                <i class="fas fa-flag"></i></span>
+                                <span class="text-info">FALTA JUSTIFICADA</span>
+                              </div></td>
+                                                  </tr>
+                                            <tr>
+                        <td class="text-center">2020-08-08</td>
+                                                        <td class="text-center ">
+                              <div class="success icon-split">
+                                <span class="icon text-info">
+                                <i class="fas fa-flag"></i></span>
+                                <span class="text-info">FALTA JUSTIFICADA</span>
+                              </div></td>
+                                                  </tr>
+                                            <tr>
+                        <td class="text-center">2020-08-31</td>
+                                                        <td class="text-center ">
+                              <div class="success icon-split">
+                                <span class="icon text-info">
+                                <i class="fas fa-flag"></i></span>
+                                <span class="text-info">FALTA JUSTIFICADA</span>
+                              </div></td>
+                                                  </tr>
+                                            </tbody>
+                  </table>
                 </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="../classes/index.html" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
               </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3>100<sup style="font-size: 20px">%</sup></h3>
 
-                  <p>Asistencia</p>
-                </div>
-                <div class="icon">
-                  <i class="icon flaticon-education"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>.</h3>
-                  <p>Horario</p>
-                </div>
-                <div class="icon">
-                  <i class="icon fa fa-calendar"></i>
-                </div>
-                <a href="../classes/classtimetable.html" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-danger">
-                <div class="inner">
-                  <h3>8</h3>
-                  <p>Actividades en el Calendario</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-calendar"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col --><
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>9</h3>
-                  <p>Calificaciones</p>
-                </div>
-                <div class="icon">
-                  <i class="ion flaticon-diploma"></i>
-                </div>
-                <a href="../classes/index.html" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
+
+
           </div>
-          <!-- /.row -->
-          <!-- Main row -->
 
 
-      </section>
       <!-- right col -->
     </div>
     <!-- /.row (main row) -->

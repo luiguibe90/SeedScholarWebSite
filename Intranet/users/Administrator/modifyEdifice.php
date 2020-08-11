@@ -1,12 +1,27 @@
 <?php
 session_start();
 if (!isset($_SESSION['USU'])) {
-    header('Location: ../../../Seed/login.html');
+  header('Location: ../../../Seed/login.html');
 }
 
 include '../../service/administratorService.php';
 include '../../service/studentService.php';
 $studentService = new studentService();
+
+if (isset($_POST["btn_subR"])) {
+
+    $studentService->insertPeopleRepresentative($_POST["cedRepresentantive"], $_POST["snRepresentative"],
+    $_POST["nameRepresentative"],$_POST["addressRepresentative"],$_POST["telfRepresentative"],
+    $_POST["dateBrhRepresentative"],$_POST["genderR"],$_POST["pemailRepresentative"]);
+    
+
+} elseif (isset($_POST["btn_subA"])){
+    echo("<script>console.log('PHP: pass btnA');</script>");
+    $studentService->insertPeopleAlumn($_POST["cedAlumn"],$_POST["snameAlumn"],
+    $_POST["nameAlumn"],$_POST["addreAlumn"],$_POST["telefAlumn"],$_POST["dateBirthAlumn"],
+    $_POST["genderA"],$_POST["emailpAlumn"]);
+    
+}
 
 ?>
 
@@ -64,9 +79,9 @@ $studentService = new studentService();
                         <img src="../../dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <?php $temp = explode(" ", $_SESSION['USU']['PNAME']); ?>
-                        <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME']); ?>
-                        <a href="#" class="d-block"><?php echo $temp[0]; ?></br> <?php echo $temp2[0]; ?> </a>
+                        <?php $temp = explode(" ", $_SESSION['USU']['PNAME'] ); ?>
+                        <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME'] ); ?>
+                        <a href="#" class="d-block"><?php echo $temp[0];?></br> <?php echo $temp2[0];?> </a>
                     </div>
                 </div>
 
@@ -84,103 +99,121 @@ $studentService = new studentService();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Visualizar Alumnos</h1>
+                            <h1>Gestion Edificio</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item"><a href="#">Layou t</a></li>
-                                <li class="breadcrumb-item active">VisualizarAlumnos</li>
+                                <li class="breadcrumb-item"><a href="managEdifice.php">Gestion Edificio</a></li>
+                                <li class="breadcrumb-item active">Modificar Edificio</li>
                             </ol>
                         </div>
+
+
                     </div>
+
+
                 </div><!-- /.container-fluid -->
+
             </section>
 
             <section class="content">
                 <div class="container-fluid">
-                    <!-- /.row -->
                     <div class="row">
-                        <div class="col-12">
-                            <div class="card">
+                        <div class="col-md-6">
+                            <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Listado Alumnos</h3>
-
-                                    <div class="card-tools">
-                                        <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <h3 class="card-title">Formulario Edificio a Modificar:</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <div class="card-body table-responsive p-0">
-                                    <table class="table table-hover text-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th>Cod_Alumno</th>
-                                                <th>Cedula</th>
-                                                <th>Apellido</th>
-                                                <th>Nombre</th>
-                                                <th>Dirección</th>
-                                                <th>Teléfono</th>
-                                                <th>FechaNacimiento</th>
-                                                <th>Genero</th>
-                                                <th>Correo</th>
-                                                <th>CorreoPersonal</th>
-                                                <th>Estado</th>
-                                                <th>FechaInicio</th>
-                                                <th>FechaFinal</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $result = $studentService->showPeople(1);
-                                            while ($alumn = mysqli_fetch_array($result)) {
-                                                echo "<tr>";
-                                                echo "<td>" . $alumn['COD_PERSONA'] . "</td>";
-                                                echo "<td>" . $alumn['CEDULA'] . "</td>";
-                                                echo "<td>" . $alumn['APELLIDO'] . "</td>";
-                                                echo "<td>" . $alumn['NOMBRE'] . "</td>";
-                                                echo "<td>" . $alumn['DIRECCION'] . "</td>";
-                                                echo "<td>" . $alumn['TELEFONO'] . "</td>";
-                                                echo "<td>" . $alumn['FECHA_NACIMIENTO'] . "</td>";
-                                                echo "<td>" . $alumn['GENERO'] . "</td>";
-                                                echo "<td>" . $alumn['CORREO'] . "</td>";
-                                                echo "<td>" . $alumn['CORREO_PERSONAL'] . "</td>";
-                                                echo "<td>" . $alumn['ESTADO'] . "</td>";
-                                                echo "<td>" . $alumn['FECHA_INICIO'] . "</td>";
-                                                echo "<td>" . $alumn['FECH_FIN'] . "</td>";
+                                <form id="formRepresentative" role="form" action=""  data-toggle="validator" method="post"  >
+                                    <div class="card-body">
+                                        
+                                        <label for="Granados"> Seleccione La Sede: </label><!--debe selecionar la sede a la que pertenece el edificio-->
+                                            <select name="campus" class="form-control">
+                                            
+                                            </select>
+                                            
+                                            <label for="Granados"> Seleccione el Edificio: </label><!--debe selecionar el edificio al que pertenece el aula y desplegarse los edificios que en la sede seleccionada anteriormente-->
+                                            <select name="campus" class="form-control">
+                                            
+                                            </select>
 
-                                                echo "</tr>";
-                                            }
-                                            ?>
+                                           
+                                            
+                                            <!--Se deben llenar los datos al selecionar el edificio-->
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
+                                            
+
+                                            <div class="form-group">
+                                            <label for="exampleInputEmail1">Nombre Edificio</label>
+                                            <input type="text" class="form-control" id="exampleText" name="nameEdificio" placeholder="Ingrese Nombre del Edificio" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Cantidad Pisos</label>
+                                            <input type="text" class="form-control" id="exampleText"
+                                            name="canPisos"    placeholder="Ingrese la cantidad de pisos del edificio">
+                                        </div>
+
+
+                                        
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                    
+                                </form>
                             </div>
-                            <!-- /.card -->
+                            
                         </div>
+                        <div class="col-md-6">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Formulario Datos Nuevos Edificio:</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                
+                                <form role="form" id="formAlumn"  action="" data-toggle="validator" method="post" >
+                                    <div class="card-body">
+                                        <div class="card-header">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nombre edificio</label>
+                                            <input type="text" class="form-control" id="exampleText" name="nameEdificio" placeholder="Ingrese Nombre del Edificio" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Cantidad Pisos</label>
+                                            <input type="text" class="form-control" id="exampleText"
+                                            name="canPisos"    placeholder="Ingrese la cantidad de pisos del edificio">
+                                        </div>
+
+                                        <div class="card-footer">
+                                        <button name="btn_subR" type="submit" class="btn btn-primary">Modificar</button>
+                                    </div>
+
+                            </div>
+                            
+                        </div>
+
                     </div>
-                    <!-- /.row -->
 
                 </div>
-            </section>
-            <!-- Main content -->
-        </div>
-        <!-- /.content-wrapper -->
-        <?php include("../../views/footer.php"); ?>
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
+            </section>
+
+
+        </div>
+
+
+        <!-- Main content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <?php include("../../views/footer.php");?>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 
@@ -190,7 +223,7 @@ $studentService = new studentService();
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

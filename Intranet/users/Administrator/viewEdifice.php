@@ -4,9 +4,29 @@ if (!isset($_SESSION['USU'])) {
     header('Location: ../../../Seed/login.html');
 }
 
-include '../../service/administratorService.php';
-include '../../service/studentService.php';
-$studentService = new studentService();
+include '../../service/infraestructuraService.php';
+//include '../../service/studentService.php';
+
+$infraestructura = new infraestructuraService();
+$sede = "sede";
+$edificio = "edificio";
+$aula = "aula";
+$codigoSede = "";
+$nombreSede = "";
+$direccionSede = "";
+$telefonoSede = "";
+$codPostalSede = "";
+$codigoAula = "";
+$nombreAula = "";
+$capacidadAula = "";
+$pisoAula = "";
+$codigoEdificio = "";
+$nombreEdificio = "";
+$cantidadPisos = "";
+$accion = "Añadir";
+$mensajeSede = "Registrar Nueva Sede";
+$mensaje = "Registro de Nueva Aula";
+$mensajeEdificios = "Registro de nuevo Edificio";
 
 ?>
 
@@ -46,7 +66,7 @@ $studentService = new studentService();
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        <?php include("../../views/barNav.php");?>
+        <?php include("../../views/barNav.php"); ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
@@ -71,7 +91,8 @@ $studentService = new studentService();
                 </div>
 
                 <!-- Sidebar Menu -->
-                <?php include("../../views/menuAdmin.php");?>
+                <?php include("../../views/menuAdmin.php"); ?>
+
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -84,13 +105,13 @@ $studentService = new studentService();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Visualizar Alumnos</h1>
+                            <h1>Visualizar Aulas</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item"><a href="#">Layou t</a></li>
-                                <li class="breadcrumb-item active">VisualizarAlumnos</li>
+                                <li class="breadcrumb-item"><a href="managEdifice.php">GestionEdificios</a></li>
+                                <li class="breadcrumb-item active">VisualizarEdificios</li>
                             </ol>
                         </div>
                     </div>
@@ -104,7 +125,7 @@ $studentService = new studentService();
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Listado Alumnos</h3>
+                                    <h3 class="card-title">Listado Edificios</h3>
 
                                     <div class="card-tools">
                                         <div class="input-group input-group-sm" style="width: 150px;">
@@ -121,42 +142,38 @@ $studentService = new studentService();
                                     <table class="table table-hover text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th>Cod_Alumno</th>
-                                                <th>Cedula</th>
-                                                <th>Apellido</th>
+                                                <th>Edificio</th>
+                                                <th>Sede</th>
                                                 <th>Nombre</th>
-                                                <th>Dirección</th>
-                                                <th>Teléfono</th>
-                                                <th>FechaNacimiento</th>
-                                                <th>Genero</th>
-                                                <th>Correo</th>
-                                                <th>CorreoPersonal</th>
-                                                <th>Estado</th>
-                                                <th>FechaInicio</th>
-                                                <th>FechaFinal</th>
+                                                <th>Nro Pisos</th>
+
+                                                <?php
+                                                $result = $infraestructura->mostrarInfraestructura($edificio);
+                                                if ($result->num_rows > 0) {
+                                                    while ($row = $result->fetch_assoc()) {
+                                                ?>
+                                            <tr>
+                                                <!--DATOS DE LA TABLA SEDES-->
+                                                <td><?php echo $row["COD_EDIFICIO"]; ?></td>
+                                                <td><?php echo $row["COD_SEDE"]; ?></td>
+                                                <td><?php echo $row["NOMBRE"]; ?></td>
+                                                <td><?php echo $row["CANTIDAD_PISOS"]; ?></td>
+
                                             </tr>
+                                        <?php   }
+                                                } else {
+                                        ?>
+                                        <tr>
+                                            <td>No hay datos en la tabla</td>
+                                        </tr>
+                                    <?php } ?>
+                                    </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $result = $studentService->showPeople(1);
-                                            while ($alumn = mysqli_fetch_array($result)) {
-                                                echo "<tr>";
-                                                echo "<td>" . $alumn['COD_PERSONA'] . "</td>";
-                                                echo "<td>" . $alumn['CEDULA'] . "</td>";
-                                                echo "<td>" . $alumn['APELLIDO'] . "</td>";
-                                                echo "<td>" . $alumn['NOMBRE'] . "</td>";
-                                                echo "<td>" . $alumn['DIRECCION'] . "</td>";
-                                                echo "<td>" . $alumn['TELEFONO'] . "</td>";
-                                                echo "<td>" . $alumn['FECHA_NACIMIENTO'] . "</td>";
-                                                echo "<td>" . $alumn['GENERO'] . "</td>";
-                                                echo "<td>" . $alumn['CORREO'] . "</td>";
-                                                echo "<td>" . $alumn['CORREO_PERSONAL'] . "</td>";
-                                                echo "<td>" . $alumn['ESTADO'] . "</td>";
-                                                echo "<td>" . $alumn['FECHA_INICIO'] . "</td>";
-                                                echo "<td>" . $alumn['FECH_FIN'] . "</td>";
 
-                                                echo "</tr>";
-                                            }
+
+
                                             ?>
 
                                         </tbody>
@@ -171,6 +188,8 @@ $studentService = new studentService();
 
                 </div>
             </section>
+
+
             <!-- Main content -->
         </div>
         <!-- /.content-wrapper -->

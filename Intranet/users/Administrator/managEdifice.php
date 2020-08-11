@@ -5,9 +5,9 @@ if (!isset($_SESSION['USU'])) {
 }
 
 include '../../service/administratorService.php';
-include '../../service/studentService.php';
-$studentService = new studentService();
-
+$administratorService = new administratorService();
+$countAlumns = $administratorService->countTypePeople(1);
+$countTeachers = $administratorService->countTypePeople(3);
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +46,7 @@ $studentService = new studentService();
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        <?php include("../../views/barNav.php");?>
+        <?php include("../../views/barNav.php"); ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
@@ -71,7 +71,7 @@ $studentService = new studentService();
                 </div>
 
                 <!-- Sidebar Menu -->
-                <?php include("../../views/menuAdmin.php");?>
+                <?php include("../../views/menuAdmin.php"); ?>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -84,97 +84,71 @@ $studentService = new studentService();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Visualizar Alumnos</h1>
+                            <h1>Dashboard</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item"><a href="#">Layou t</a></li>
-                                <li class="breadcrumb-item active">VisualizarAlumnos</li>
+                                <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+                                <li class="breadcrumb-item active">GestionEdificios</li>
                             </ol>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
-            </section>
 
-            <section class="content">
-                <div class="container-fluid">
-                    <!-- /.row -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Listado Alumnos</h3>
-
-                                    <div class="card-tools">
-                                        <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body table-responsive p-0">
-                                    <table class="table table-hover text-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th>Cod_Alumno</th>
-                                                <th>Cedula</th>
-                                                <th>Apellido</th>
-                                                <th>Nombre</th>
-                                                <th>Dirección</th>
-                                                <th>Teléfono</th>
-                                                <th>FechaNacimiento</th>
-                                                <th>Genero</th>
-                                                <th>Correo</th>
-                                                <th>CorreoPersonal</th>
-                                                <th>Estado</th>
-                                                <th>FechaInicio</th>
-                                                <th>FechaFinal</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $result = $studentService->showPeople(1);
-                                            while ($alumn = mysqli_fetch_array($result)) {
-                                                echo "<tr>";
-                                                echo "<td>" . $alumn['COD_PERSONA'] . "</td>";
-                                                echo "<td>" . $alumn['CEDULA'] . "</td>";
-                                                echo "<td>" . $alumn['APELLIDO'] . "</td>";
-                                                echo "<td>" . $alumn['NOMBRE'] . "</td>";
-                                                echo "<td>" . $alumn['DIRECCION'] . "</td>";
-                                                echo "<td>" . $alumn['TELEFONO'] . "</td>";
-                                                echo "<td>" . $alumn['FECHA_NACIMIENTO'] . "</td>";
-                                                echo "<td>" . $alumn['GENERO'] . "</td>";
-                                                echo "<td>" . $alumn['CORREO'] . "</td>";
-                                                echo "<td>" . $alumn['CORREO_PERSONAL'] . "</td>";
-                                                echo "<td>" . $alumn['ESTADO'] . "</td>";
-                                                echo "<td>" . $alumn['FECHA_INICIO'] . "</td>";
-                                                echo "<td>" . $alumn['FECH_FIN'] . "</td>";
-
-                                                echo "</tr>";
-                                            }
-                                            ?>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3><?php echo $countTeachers ?></h3>
+                                <p>Visualizar Edificios</p>
                             </div>
-                            <!-- /.card -->
+                            <div class="icon">
+                                <i class="fa fa-list red-bg"></i>
+                            </div>
+                            <a href="viewEdifice.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a><!-- Agregar para ver los campus-->
                         </div>
                     </div>
-                    <!-- /.row -->
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3><?php echo $countTeachers ?></h3>
+                                <p>Agregar Edificio</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="addEdifice.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a><!-- aqui agregar el archivo para agregar edificios-->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3><?php echo $countTeachers ?></h3>
+                                <p>Modificar Edificio</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="modifyEdifice.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a><!-- crear archivo para modificar edificios-->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3><?php echo $countTeachers ?></h3>
+                                <p>Eliminar Edificio</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="removeEdifice.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a><!-- crear archivo para eliminar edificios-->
+                        </div>
+                    </div>
 
-                </div>
             </section>
-            <!-- Main content -->
         </div>
-        <!-- /.content-wrapper -->
-        <?php include("../../views/footer.php"); ?>
+        <?php include("../../views/footer.php");?>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -217,5 +191,3 @@ $studentService = new studentService();
     <!-- AdminLTE for demo purposes -->
     <script src="../../dist/js/demo.js"></script>
 </body>
-
-</html>

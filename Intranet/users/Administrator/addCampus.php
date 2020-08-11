@@ -4,9 +4,36 @@ if (!isset($_SESSION['USU'])) {
     header('Location: ../../../Seed/login.html');
 }
 
-include '../../service/administratorService.php';
-include '../../service/studentService.php';
-$studentService = new studentService();
+include '../../service/infraestructuraService.php';
+$infraestructura = new infraestructuraService();
+$sede = "sede";
+$edificio = "edificio";
+$aula = "aula";
+$codCampus = "";
+$nameCampus = "";
+$addressCampus = "";
+$telefCampus = "";
+$postCampus = "";
+$codigoAula = "";
+$nombreAula = "";
+$capacidadAula = "";
+$pisoAula = "";
+$codigoEdificio = "";
+$nombreEdificio = "";
+$cantidadPisos = "";
+$accion = "Añadir";
+$mensajeSede = "Registrar Nueva Sede";
+$mensaje = "Registro de Nueva Aula";
+$mensajeEdificios = "Registro de nuevo Edificio";
+
+if (isset($_POST["btn_subR"])) {
+    $infraestructura->insertarSede(
+        $_POST["nameCampus"],
+        $_POST["addressCampus"],
+        $_POST["telefCampus"],
+        $_POST["postCampus"]
+    );
+}
 
 ?>
 
@@ -46,7 +73,7 @@ $studentService = new studentService();
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        <?php include("../../views/barNav.php");?>
+        <?php include("../../views/barNav.php"); ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
@@ -71,12 +98,9 @@ $studentService = new studentService();
                 </div>
 
                 <!-- Sidebar Menu -->
-                <?php include("../../views/menuAdmin.php");?>
-                <!-- /.sidebar-menu -->
+                <?php include("../../views/menuAdmin.php"); ?>
             </div>
-            <!-- /.sidebar -->
         </aside>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -84,103 +108,72 @@ $studentService = new studentService();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Visualizar Alumnos</h1>
+                            <h1>Gestión Sedes</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item"><a href="#">Layou t</a></li>
-                                <li class="breadcrumb-item active">VisualizarAlumnos</li>
+                                <li class="breadcrumb-item"><a href="managCampus.php">Gestión Sedes</a></li>
+                                <li class="breadcrumb-item active">Agregar Sede</li>
                             </ol>
                         </div>
                     </div>
-                </div><!-- /.container-fluid -->
+                </div>
             </section>
 
             <section class="content">
                 <div class="container-fluid">
-                    <!-- /.row -->
                     <div class="row">
-                        <div class="col-12">
-                            <div class="card">
+                        <div class="col-md-6">
+                            <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Listado Alumnos</h3>
-
-                                    <div class="card-tools">
-                                        <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                            </div>
+                                    <h3 class="card-title">Formulario Sede:</h3>
+                                </div>
+                                <form id="formCampus" role="form" action="" data-toggle="validator" method="post">
+                                    <div class="card-body">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Datos Sede:</h3>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nombre Sede</label>
+                                            <input type="text" class="form-control" id="exampleText" name="nameCampus" placeholder="Ingrese Nombre de Sede" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Dirección Sede</label>
+                                            <input type="text" class="form-control" id="exampleText" name="addressCampus" placeholder="Ingrese dirección de  sede" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Teléfono Sede</label>
+                                            <input type="text" class="form-control" id="exampleText" name="telefCampus" placeholder="Ingrese  Teléfono de  Sede" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Código Postal</label>
+                                            <input type="text" class="form-control" id="exampleText" name="postCampus" placeholder="Ingrese código postal de Sede" required>
+                                        </div>
+
                                     </div>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body table-responsive p-0">
-                                    <table class="table table-hover text-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th>Cod_Alumno</th>
-                                                <th>Cedula</th>
-                                                <th>Apellido</th>
-                                                <th>Nombre</th>
-                                                <th>Dirección</th>
-                                                <th>Teléfono</th>
-                                                <th>FechaNacimiento</th>
-                                                <th>Genero</th>
-                                                <th>Correo</th>
-                                                <th>CorreoPersonal</th>
-                                                <th>Estado</th>
-                                                <th>FechaInicio</th>
-                                                <th>FechaFinal</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $result = $studentService->showPeople(1);
-                                            while ($alumn = mysqli_fetch_array($result)) {
-                                                echo "<tr>";
-                                                echo "<td>" . $alumn['COD_PERSONA'] . "</td>";
-                                                echo "<td>" . $alumn['CEDULA'] . "</td>";
-                                                echo "<td>" . $alumn['APELLIDO'] . "</td>";
-                                                echo "<td>" . $alumn['NOMBRE'] . "</td>";
-                                                echo "<td>" . $alumn['DIRECCION'] . "</td>";
-                                                echo "<td>" . $alumn['TELEFONO'] . "</td>";
-                                                echo "<td>" . $alumn['FECHA_NACIMIENTO'] . "</td>";
-                                                echo "<td>" . $alumn['GENERO'] . "</td>";
-                                                echo "<td>" . $alumn['CORREO'] . "</td>";
-                                                echo "<td>" . $alumn['CORREO_PERSONAL'] . "</td>";
-                                                echo "<td>" . $alumn['ESTADO'] . "</td>";
-                                                echo "<td>" . $alumn['FECHA_INICIO'] . "</td>";
-                                                echo "<td>" . $alumn['FECH_FIN'] . "</td>";
-
-                                                echo "</tr>";
-                                            }
-                                            ?>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button name="btn_subR" type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                </form>
                             </div>
-                            <!-- /.card -->
                         </div>
                     </div>
-                    <!-- /.row -->
-
                 </div>
             </section>
-            <!-- Main content -->
         </div>
-        <!-- /.content-wrapper -->
-        <?php include("../../views/footer.php"); ?>
+    </div>
+    <?php include("../../views/footer.php"); ?>
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 
