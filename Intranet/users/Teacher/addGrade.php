@@ -48,32 +48,7 @@ $studentService = new studentService();
         <!-- Site wrapper -->
         <div class="wrapper">
             <!-- Navbar -->
-            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-                <!-- Left navbar links -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                    </li>
-                    <li class="nav-item d-none d-sm-inline-block">
-                        <a href="../users/student.html" class="nav-link">Inicio</a>
-                    </li>
-                    <li class="nav-item d-none d-sm-inline-block">
-                        <a href="#" class="nav-link">Contacto</a>
-                    </li>
-                </ul>
-
-                <!-- SEARCH FORM -->
-                <form class="form-inline ml-3">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </nav>
+            <?php include("../../views/barNav.php"); ?>
             <!-- /.navbar -->
 
             <!-- Main Sidebar Container -->
@@ -98,101 +73,7 @@ $studentService = new studentService();
                     </div>
 
                     <!-- Sidebar Menu -->
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-
-                            <li class="nav-item">
-                                <a href="index.php" class="nav-link active">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        Inicio
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon ion-ios-book"></i>
-                                    <p>
-                                        Calificaciones Alumnos
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="./addGrade.php" class="nav-link">
-                                            <i class="far ion-ios-book-outline av-icon"></i>
-                                            <p>Ingreso Calificaciones</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="./modifyGrade.php" class="nav-link">
-                                            <i class="far ion-ios-book-outline av-icon"></i>
-                                            <p>Modificación Calificaciones</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="./reportGrade.php" class="nav-link">
-                                            <i class="far ion-ios-book-outline av-icon"></i>
-                                            <p>Reporte Calificaciones</p>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li>
-
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon ion-ios-book"></i>
-                                    <p>
-                                        Asistencia Alumnos
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="./attendanceStudent.php" class="nav-link">
-                                            <i class="far ion-ios-book-outline av-icon"></i>
-                                            <p>Registro Asistencia</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="./modifyattendanceStudent.php" class="nav-link">
-                                            <i class="far ion-ios-book-outline av-icon"></i>
-                                            <p>Modificación Asistencia</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="./reportattendanceStudent.php" class="nav-link">
-                                            <i class="far ion-ios-book-outline av-icon"></i>
-                                            <p>Reporte Asistencia</p>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon ion-ios-book"></i>
-                                    <p>
-                                        Listado Alumnos
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="./reportStudent.php" class="nav-link">
-                                            <i class="far ion-ios-book-outline av-icon"></i>
-                                            <p>Reporte de Alumnos</p>
-                                        </a>
-                                    </li>
-
-
-                                </ul>
-                            </li>
-
-                    </nav>
+                    <?php include("../../views/menuDocente.php"); ?>
                     <!-- /.sidebar-menu -->
                 </div>
                 <!-- /.sidebar -->
@@ -235,7 +116,7 @@ $studentService = new studentService();
                                     </select>
                                 </div>
                             </div>
-                   
+
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label>Seleccione Asignatura</label>
@@ -250,7 +131,7 @@ $studentService = new studentService();
                                     </select>
                                 </div>
                             </div>
-                      
+
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label>Seleccione Quimestre</label>
@@ -266,85 +147,66 @@ $studentService = new studentService();
                                 </div>
                             </div>
                         </div>
-
-
-
-
                         <section class="content">
-                <div class="container-fluid">
-                    <!-- /.row -->
-                    <div class="row">
-                        <div class="col-10">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Ingrese Notas de Alumnos</h3>
+                            <div class="container-fluid">
+                                <!-- /.row -->
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3 class="card-title">Ingrese Notas de Alumnos</h3>
 
-                                    <div class="card-tools">
-                                        <div class="input-group input-group-sm" style="width: 150px;">
-                                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                                <div class="card-tools">
+                                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                                        <div class="input-group-append">
+                                                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body table-responsive p-0">
+                                                <table class="table table-hover text-nowrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Cod_Alumno</th>
+                                                            <th>Apellido</th>
+                                                            <th>Nombre</th>
+                                                            <th>Ingrese Notas</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $result = $studentService->showPeople(1);
+                                                        while ($alumn = mysqli_fetch_array($result)) {
+                                                            echo "<tr>";
+                                                            echo "<td>" . $alumn['COD_PERSONA'] . "</td>";
+                                                            echo "<td>" . $alumn['APELLIDO'] . "</td>";
+                                                            echo "<td>" . $alumn['NOMBRE'] . "</td>";
+                                                        ?>
+                                                            <td>
+                                                                <a href="modifyTeacher.php?codigo='<?php echo $alumn['COD_PERSONA'] ?>'" title="Ingresar Notas" class="btn btn-primary btn-sm"><span class="far fa-edit fa-lg" aria-hidden="true"></span></a>
+                                                            </td>
+                                                        <?php echo "</tr>";
+                                                        }
+                                                        ?>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.card-body -->
                                         </div>
+                                        <!-- /.card -->
                                     </div>
                                 </div>
-                                <!-- /.card-header -->
-                                <div class="card-body table-responsive p-0">
-                                    <table class="table table-hover text-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th>Cod_Alumno</th>                                               
-                                                <th>Apellido</th>
-                                                <th>Nombre</th>
-                                                <th>Ingrese Notas</th>
-                                            
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $result = $studentService->showPeople(1);
-                                            while ($alumn = mysqli_fetch_array($result)) {
-                                                echo "<tr>";
-                                                echo "<td>" . $alumn['COD_PERSONA'] . "</td>";
-                                                echo "<td>" . $alumn['APELLIDO'] . "</td>";
-                                                echo "<td>" . $alumn['NOMBRE'] . "</td>";
-                                                ?>
-                                                <td>
-                                                    <a href="modifyTeacher.php?codigo='<?php echo $alumn['COD_PERSONA']?>'"
-                                                      title="Ingresar Notas" class="btn btn-primary btn-sm"><span
-                                                        class="far fa-edit fa-lg" aria-hidden="true"></span></a>
-                                                 </td>
-                                            <?php echo "</tr>";
-                                            }
-                                            ?>
+                                <!-- /.row -->
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
-                        </div>
+                        </section>
                     </div>
-                    <!-- /.row -->
-
-                </div>
-            </section>
-
-
-
-
-
-
-
-
-
-
-                    </div>
-
-
-
                 </section>
                 <!-- right col -->
             </div>
@@ -354,7 +216,7 @@ $studentService = new studentService();
 
         </div>
 
-        <?php include("../../footer.php");?>
+        <?php include("../../footer.php"); ?>
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
