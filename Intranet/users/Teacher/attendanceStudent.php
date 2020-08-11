@@ -86,7 +86,7 @@ $studentService = new studentService();
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Seleccione Para Registrar Asistencia</h1>
+                                <h1>Registrar Asistencia</h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -105,6 +105,20 @@ $studentService = new studentService();
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label>Seleccione Periodo</label>
+                                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 70%;">
+                                        <option selected="selected">Alabama</option>
+                                        <option>Alaska</option>
+                                        <option>California</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Washington</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label>Seleccione Nivel</label>
                                     <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 70%;">
                                         <option selected="selected">Alabama</option>
                                         <option>Alaska</option>

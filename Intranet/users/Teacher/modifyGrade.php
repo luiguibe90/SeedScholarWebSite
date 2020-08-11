@@ -86,7 +86,7 @@ $studentService = new studentService();
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Seleccione Datos Para Modificar Calificaciones</h1>
+                                <h1>Modificar Calificaciones</h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -116,7 +116,20 @@ $studentService = new studentService();
                                     </select>
                                 </div>
                             </div>
-
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label>Seleccione Nivel</label>
+                                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 70%;">
+                                        <option selected="selected">Alabama</option>
+                                        <option>Alaska</option>
+                                        <option>California</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Washington</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label>Seleccione Asignatura</label>
@@ -155,27 +168,16 @@ $studentService = new studentService();
                                         <div class="card">
                                             <div class="card-header">
                                                 <h3 class="card-title">Modifique Calificaciones</h3>
-
-                                                <div class="card-tools">
-                                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                                        <div class="input-group-append">
-                                                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <!-- /.card-header -->
                                             <div class="card-body table-responsive p-0">
                                                 <table class="table table-hover text-nowrap">
                                                     <thead>
                                                         <tr>
-                                                            <th>Cod_Alumno</th>
-                                                            <th>Apellido</th>
-                                                            <th>Nombre</th>
+                                                            <th>Alumno</th>
+                                                            <th>Apellidos</th>
+                                                            <th>Nombres</th>
                                                             <th>Modifique Notas</th>
-
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -188,7 +190,7 @@ $studentService = new studentService();
                                                             echo "<td>" . $alumn['NOMBRE'] . "</td>";
                                                         ?>
                                                             <td>
-                                                                <a href="modifyTeacher.php?codigo='<?php echo $alumn['COD_PERSONA'] ?>'" title="Modifique Notas" class="btn btn-primary btn-sm"><span class="far fa-edit fa-lg" aria-hidden="true"></span></a>
+                                                                <a href="modifyGrade.php?codigo='<?php echo $alumn['COD_PERSONA'] ?>'" title="Modifique Notas" class="btn btn-primary btn-sm"><span class="far fa-edit fa-lg" aria-hidden="true"></span></a>
                                                             </td>
                                                         <?php echo "</tr>";
                                                         }

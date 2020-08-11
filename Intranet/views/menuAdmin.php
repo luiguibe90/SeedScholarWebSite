@@ -93,7 +93,7 @@
                     <a href="managCampus.php" class="nav-link">
                         <!--crud sedes-->
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Sedes</p>
+                        <p>Sede</p>
                     </a>
                 </li>
                 <li class="nav-item">

@@ -102,9 +102,23 @@ $studentService = new studentService();
                 <section class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label>Seleccione Periodo</label>
+                                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 70%;">
+                                        <option selected="selected">Alabama</option>
+                                        <option>Alaska</option>
+                                        <option>California</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Washington</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label>Seleccione Nivel</label>
                                     <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 70%;">
                                         <option selected="selected">Alabama</option>
                                         <option>Alaska</option>
@@ -139,26 +153,16 @@ $studentService = new studentService();
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h3 class="card-title">Reporte Alumnos</h3>
-
-                                                <div class="card-tools">
-                                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                                        <div class="input-group-append">
-                                                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <h3 class="card-title">Reporte Alumnos</h3>                                            
                                             </div>
                                             <!-- /.card-header -->
                                             <div class="card-body table-responsive p-0">
                                                 <table class="table table-hover text-nowrap">
                                                     <thead>
                                                         <tr>
-                                                            <th>Cod_Alumno</th>
-                                                            <th>Apellido</th>
-                                                            <th>Nombre</th>
+                                                            <th>Codigo</th>
+                                                            <th>Apellidos</th>
+                                                            <th>Nombres</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>

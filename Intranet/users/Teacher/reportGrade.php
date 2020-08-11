@@ -86,7 +86,7 @@ $studentService = new studentService();
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Seleccione Datos Para Visualizar Reporte</h1>
+                                <h1>Visualizar Reporte</h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -105,6 +105,20 @@ $studentService = new studentService();
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label>Seleccione Periodo</label>
+                                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 70%;">
+                                        <option selected="selected">Alabama</option>
+                                        <option>Alaska</option>
+                                        <option>California</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Washington</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label>Seleccione Nivel</label>
                                     <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 70%;">
                                         <option selected="selected">Alabama</option>
                                         <option>Alaska</option>
@@ -156,18 +170,18 @@ $studentService = new studentService();
                                                 <table class="table table-hover text-nowrap">
                                                     <thead>
                                                         <tr>
-                                                            <th>Cod_Alumno</th>
-                                                            <th>Apellido</th>
-                                                            <th>Nombre</th>
+                                                            <th>Código</th>
+                                                            <th>Apellidos</th>
+                                                            <th>Nombres</th>
                                                             <th>Deberes</th>
                                                             <th>Talleres</th>
                                                             <th>Pruebas</th>
-                                                            <th>Examenes</th>
+                                                            <th>Exámenes</th>
                                                             <th>1er Quimestre</th>
                                                             <th>Deberes</th>
                                                             <th>Talleres</th>
                                                             <th>Pruebas</th>
-                                                            <th>Examenes</th>
+                                                            <th>Exámenes</th>
                                                             <th>2do Quimestre</th>
                                                             <th>Pro. Fin.</th>
                                                         </tr>
