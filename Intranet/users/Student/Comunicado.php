@@ -4,7 +4,7 @@ include '../../service/studentService.php';
 if (!isset($_SESSION['USU'])) {
   header('Location: ../../../Seed/login.html');
 }
-$alumnoService = new AlumnoService();
+$alumnoService = new studentService();
 isset($_GET['codigoAsignatura']);
 $result=$alumnoService->findRelease(($_GET['codigoAsignatura']));
 $result2=$alumnoService->findSubjetByCode(($_GET['codigoAsignatura']));

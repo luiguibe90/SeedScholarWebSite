@@ -4,7 +4,7 @@ include '../../service/studentService.php';
 if (!isset($_SESSION['USU'])) {
   header('Location: ../../../Seed/login.html');
 }
-$alumnoService = new AlumnoService();
+$alumnoService = new studentService();
 isset($_GET['codigoAsignatura']);
 $result=$alumnoService->findSubjetByCode(($_GET['codigoAsignatura']));
 ?>
@@ -49,7 +49,7 @@ $result=$alumnoService->findSubjetByCode(($_GET['codigoAsignatura']));
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <?php include("../../views/barNav.php");?>
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -202,17 +202,7 @@ else { ?>
 
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <p>
-        Copyright &copy;
-        <script>
-          document.write(new Date().getFullYear());
-        </script> All rights reserved | SeedSchool
-      </p>
-    </div>
-
-  </footer>
+  <?php include("../../views/footer.php");?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

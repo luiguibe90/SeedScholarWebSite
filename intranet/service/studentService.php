@@ -4,6 +4,7 @@ include_once 'mainService.php';
 
   class studentService extends mainService{
     private $entityName = "PERSONA";
+    
     function findAll(){
       return $this->conex->query("  ");
     }
@@ -93,7 +94,7 @@ function findGrades($codAlumno){
         WHERE a.COD_NIVEL_EDUCATIVO = n.COD_NIVEL_EDUCATIVO AND a.COD_ASIGNATURA =".$codAsignatura);
     }
 
-    function findAll(){
+    function findyAll(){
         return $this->conex->query("SELECT NOMBRE FROM ASIGNATURA");
     }
 
