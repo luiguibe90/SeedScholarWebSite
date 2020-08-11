@@ -1,8 +1,12 @@
 <?php
 session_start();
+include '../../service/studentService.php';
 if (!isset($_SESSION['USU'])) {
   header('Location: ../../../Seed/login.html');
 }
+$alumnoService = new studentService();
+// $result2 = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
+// $result = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
 ?>
 
 <!DOCTYPE html>
@@ -45,32 +49,7 @@ if (!isset($_SESSION['USU'])) {
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="../users/student.html" class="nav-link">Inicio</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contacto</a>
-        </li>
-      </ul>
-
-      <!-- SEARCH FORM -->
-      <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-navbar" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-    </nav>
+    <?php include("../../views/barNav.php");?>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
@@ -85,7 +64,7 @@ if (!isset($_SESSION['USU'])) {
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="../../dist/img/USUm1.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="../../dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <?php $temp = explode(" ", $_SESSION['USU']['PNAME'] ); ?>
@@ -95,122 +74,7 @@ if (!isset($_SESSION['USU'])) {
         </div>
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-
-            <li class="nav-item">
-              <a href="./index.php" class="nav-link active">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  Inicio
-                </p>
-              </a>
-            </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Materias
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Matemáticas</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Ciencias Naturales</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Educación Estética</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Educación Física</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Estudios Sociales</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Lengua Extranjera</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Lengua</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Literatura</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Naturales y Sociales</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="nav-item has-treeview">
-              <a href="./grade.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Calificaciones
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item has-treeview">
-              <a href="./assistance.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Asistencia
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item has-treeview">
-              <a href="./schedule.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Horario
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item has-treeview">
-              <a href="./changePassword.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Cambio de contraseña
-                </p>
-              </a>
-            </li>
-
-        </nav>
+        <?php include("../../views/menuEstudiante.php");?>
         <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
@@ -227,7 +91,7 @@ if (!isset($_SESSION['USU'])) {
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="#">Estudiante</a></li>
                 <li class="breadcrumb-item active">Inicio</li>
               </ol>
             </div>
@@ -250,7 +114,7 @@ if (!isset($_SESSION['USU'])) {
                 <div class="icon">
                   <i class="ion ion-ios-book"></i>
                 </div>
-                <a href="../classes/index.html" class="small-box-footer">ir <i
+                <a href="./subject.php" class="small-box-footer">ir <i
                     class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
@@ -266,7 +130,7 @@ if (!isset($_SESSION['USU'])) {
                 <div class="icon">
                   <i class="icon flaticon-education"></i>
                 </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="./assistance.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -280,7 +144,7 @@ if (!isset($_SESSION['USU'])) {
                 <div class="icon">
                   <i class="icon fa fa-calendar"></i>
                 </div>
-                <a href="../classes/classtimetable.html" class="small-box-footer">ir <i
+                <a href="./schedule.php" class="small-box-footer">ir <i
                     class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
@@ -295,7 +159,7 @@ if (!isset($_SESSION['USU'])) {
                 <div class="icon">
                   <i class="ion ion-calendar"></i>
                 </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="./Comunicado.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col --><
@@ -309,7 +173,7 @@ if (!isset($_SESSION['USU'])) {
                 <div class="icon">
                   <i class="ion flaticon-diploma"></i>
                 </div>
-                <a href="../classes/index.html" class="small-box-footer">ir <i
+                <a href="./grade.php" class="small-box-footer">ir <i
                     class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>

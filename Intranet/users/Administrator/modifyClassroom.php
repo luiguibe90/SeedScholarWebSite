@@ -4,27 +4,27 @@ if (!isset($_SESSION['USU'])) {
     header('Location: ../../../Seed/login.html');
 }
 include '../../service/infraestructuraService.php';
-   
-    $infraestructura = new infraestructuraService();
-    $sede="sede";
-    $edificio="edificio";
-    $aula="aula";
-    $codigoSede="";
-    $nombreSede="";
-    $direccionSede="";
-    $telefonoSede="";
-    $codPostalSede="";
-    $codigoAula = "";
-    $nombreAula="";
-    $capacidadAula="";
-    $pisoAula="";
-    $codigoEdificio="";
-    $nombreEdificio="";
-    $cantidadPisos="";
-    $accion="Añadir";
-    $mensajeSede="Registrar Nueva Sede";
-    $mensaje="Registro de Nueva Aula";
-    $mensajeEdificios = "Registro de nuevo Edificio";
+
+$infraestructura = new infraestructuraService();
+$sede = "sede";
+$edificio = "edificio";
+$aula = "aula";
+$codigoSede = "";
+$nombreSede = "";
+$direccionSede = "";
+$telefonoSede = "";
+$codPostalSede = "";
+$codigoAula = "";
+$nombreAula = "";
+$capacidadAula = "";
+$pisoAula = "";
+$codigoEdificio = "";
+$nombreEdificio = "";
+$cantidadPisos = "";
+$accion = "Añadir";
+$mensajeSede = "Registrar Nueva Sede";
+$mensaje = "Registro de Nueva Aula";
+$mensajeEdificios = "Registro de nuevo Edificio";
 //AULAS
 if (isset($_POST['accionAula']) && ($_POST['accionAula'] == 'Añadir')) {
     $infraestructura->insertarAula(
@@ -44,7 +44,7 @@ if (isset($_POST['accionAula']) && ($_POST['accionAula'] == 'Añadir')) {
         $_POST['tipo_aula'],
         $_POST['piso_aula'],
         $_POST['codigo_aula_comparar'],
-     );
+    );
 } else if (isset($_GET["modificarAula"])) {
     $result = $infraestructura->encontrarAula($_GET['modificarAula']);
     if ($result != null) {
@@ -158,7 +158,7 @@ if (isset($_POST['accionAula']) && ($_POST['accionAula'] == 'Añadir')) {
                     <form action="" name="aulas" id="aulas" method="post">
                         <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
-                                <thead class="text-center">
+                                <thead >
                                     <tr>
                                         <th>Código</th>
                                         <th>Código Edificio</th>
@@ -167,7 +167,7 @@ if (isset($_POST['accionAula']) && ($_POST['accionAula'] == 'Añadir')) {
                                         <th>Tipo</th>
                                         <th>Piso</th>
                                         <th>Actualizar</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -191,7 +191,7 @@ if (isset($_POST['accionAula']) && ($_POST['accionAula'] == 'Añadir')) {
                                                         </a>
                                                     </div>
                                                 </td>
-                                                
+
                                             </tr>
                                         <?php   }
                                     } else {
@@ -250,67 +250,23 @@ if (isset($_POST['accionAula']) && ($_POST['accionAula'] == 'Añadir')) {
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                            <label for="exampleInputEmail1">Piso Aula</label>
+                                                <label for="exampleInputEmail1">Piso Aula</label>
                                                 <input type="text" class="form-control" placeholder="Piso del aula" required="" data-toggle="tooltip" data-placement="top" title="Escriba el piso donde se encuentra el aula" name="piso_aula" value="<?php echo $pisoAula ?>">
-                                                
+
                                             </div>
                                             <p class="text-center">
-                                                <input type="submit" name="accionAula" value="<?php echo $accion ?>" class="btn btn-primary" style="margin-right: 20px;">
-                                                <button type="reset" class="btn btn-info"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                <input type="submit" name="accionAula" value="Modificar" class="btn btn-primary" style="margin-right: 20px;">
+
                                             </p>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
+            </section>
         </div>
-        <!--<div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <h3 class="card-title">Modificar Aula</h3>
-                                </div>
-                                
-                                <form id="formRepresentative" role="form" action="" data-toggle="validator" method="post">
-                                    <div class="card-body">
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Nombre Aula</label>
-                                            <input type="text" class="form-control" id="exampleText" name="nameAula" placeholder="Ingrese Nombre">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Capacidad</label>
-                                            <input type="text" class="form-control" id="exampleText" name="capAula" placeholder="Ingrese la capacidad del Aula" maxlength="10">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="aulaProfesores">Tipo</label>
-                                            <input type="text" class="form-control" id="exampleText" name="capTipo" placeholder="Ingrese el Tipo de Aula">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Piso</label>
-                                            <input type="text" class="form-control" id="exampleText" name="Piso" placeholder="Ingrese el piso en que se encuentra la Aula">
-                                        </div>
-
-                                    </div>
-                                   
-
-                                </form>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                </div>-->
-
-
-        </section>
-
-
     </div>
 
 

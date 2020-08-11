@@ -1,8 +1,12 @@
 <?php
 session_start();
+include '../../service/studentService.php';
 if (!isset($_SESSION['USU'])) {
   header('Location: ../../../Seed/login.html');
 }
+$alumnoService = new studentService();
+$result2 = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
+$result = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +89,7 @@ if (!isset($_SESSION['USU'])) {
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="../../dist/img/USUm1.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="../../dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <?php $temp = explode(" ", $_SESSION['USU']['PNAME'] ); ?>
@@ -108,105 +112,60 @@ if (!isset($_SESSION['USU'])) {
                 </p>
               </a>
             </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Materias
-                  <i class="right fas fa-angle-left"></i>
-                </p>
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                <span>Asignaturas</span>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Matemáticas</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index2.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Ciencias Naturales</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Educación Estética</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Educación Física</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Estudios Sociales</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Lengua Extranjera</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Lengua</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Literatura</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Naturales y Sociales</p>
-                  </a>
-                </li>
-              </ul>
+              <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Asignaturas:</h6>
+                  <?php
+                  if ($result2->num_rows > 0) {
+                    while ($row = $result2->fetch_assoc()) {
+                  ?>
+                      <a class="collapse-item" href="./subject.php?codigoAsignatura=<?php echo $row['COD_ASIGNATURA'] ?>"><i class="fas fa-fw fa-book"></i>
+                        <span><?php echo $row["NOMBRE"]; ?></span></a>
+                    <?php
+                    }
+                  } else { ?>
+                    <a class="collapse-item" href="#"><i class="fas fa-fw fa-book"></i>
+                      <span>NINGUNA</span></a>
+                  <?php } ?>
+                </div>
+              </div>
             </li>
+            <hr class="sidebar-divider">
 
-            <li class="nav-item has-treeview">
-              <a href="./grade.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Calificaciones
-                </p>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item active">
+              <a class="nav-link collapsed" href="./grade.php" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-check-circle"></i>
+                <span>Calificaciones</span>
               </a>
             </li>
-
-            <li class="nav-item has-treeview">
-              <a href="./assistance.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Asistencia
-                </p>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="./assistance.php" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-child"></i>
+                <span>Asistencia</span>
               </a>
             </li>
-
-            <li class="nav-item has-treeview">
-              <a href="./schedule.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Horario
-                </p>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="./schedule.php" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-calendar"></i>
+                <span>Horario</span>
               </a>
             </li>
-
-            <li class="nav-item has-treeview">
-              <a href="./changePassword.php" class="nav-link">
-                <i class="nav-icon ion-ios-book"></i>
-                <p>
-                  Cambio de contraseña
-                </p>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="./changePassword.php" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <span>Cambio de contraseña</span>
               </a>
             </li>
 
@@ -236,131 +195,49 @@ if (!isset($_SESSION['USU'])) {
       </section>
 
             <!-- Main content -->
-            <section class="content">
-        <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>Lunes 7 - 9</h3>
-                  <p>Matemáticas</p>
+            <div class="row ">
+                    <!-- Content Row -->
+                        <?php
+                        
+                            while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                        <a class="btn btn-fix ">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                <div class="col-auto">
+                                <i class="fas fa-book fa-3x text-gray-300 mb-2"></i>
+                                </div>
+                                
+                                    <div class="h4 text-primary-800 font-weight-bold text-primary text-uppercase mb-2"><?php echo $row['NOMBRE']; ?> </div>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">----------------------------</div>
+                                    <?php
+                                        $result3 = $alumnoService->findSchedule($_SESSION['EST']['COD_PERSONA'], $row['COD_ASIGNATURA']);
+                                        if ($result3->num_rows > 0) {
+                                        while ($row1 = $result3->fetch_assoc()) {
+                                    ?>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?php echo $row1['HORA_INICIO'];?> - <?php echo $row1['HORA_FIN'];?></div>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?php echo $row1['DIA'];?> - PARALELO: <?php echo $row1['NOMBRE'];?></div>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">----------------------------</div>
+                                    <?php
+                                 }} ?>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">::::::</div>
+                                    <div class="row no-gutters align-items-center"></div>
+                                    <div class="col">
+                                 
+                                    </div>
+                                </div>
+                                </div>                               
+                            </div>
+                            
+                        </div>
+                        </div>
+                        </a>
+                        <?php
+                                 } ?>
                 </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>Martes 7 - 9</h3>
-                  <p>Ciencias Naturales</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>Miercoles 7 - 9</h3>
-                  <p>Educación Estética</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>Jueves 7 - 9</h3>
-                  <p>Educación Física</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>Lunes 9 - 11</h3>
-                  <p>Estudios Sociales</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>Martes 9 - 11</h3>
-                  <p>Lengua Extranjera</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>Miercoles 9 - 11</h3>
-                  <p>Lengua</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>Jueves 9 - 11</h3>
-                  <p>Literatura</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>Lunes 12 - 1</h3>
-                  <p>Naturales y Sociales</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-
-
-          </div><!-- /.container-fluid -->
-      </section>
 
 
       <!-- right col -->

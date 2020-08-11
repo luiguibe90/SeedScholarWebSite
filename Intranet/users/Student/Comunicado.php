@@ -5,11 +5,9 @@ if (!isset($_SESSION['USU'])) {
   header('Location: ../../../Seed/login.html');
 }
 $alumnoService = new studentService();
-$result2 = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
-$result = $alumnoService->findAssistance($_SESSION['EST']['COD_PERSONA']);
-$asistencia="ASISTIÓ";
-$faltaJustificada="FALTA JUSTIFICADA";
-$faltaInjustificada="FALTA INJUSTIFICADA";
+isset($_GET['codigoAsignatura']);
+$result=$alumnoService->findRelease(($_GET['codigoAsignatura']));
+$result2=$alumnoService->findSubjetByCode(($_GET['codigoAsignatura']));
 ?>
 
 <!DOCTYPE html>
@@ -95,12 +93,19 @@ $faltaInjustificada="FALTA INJUSTIFICADA";
             <img src="../../dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <?php $temp = explode(" ", $_SESSION['USU']['PNAME'] ); ?>
-            <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME'] ); ?>
-            <a href="#" class="d-block"><?php echo $temp[0];?></br> <?php echo $temp2[0];?> </a>
+            <?php $temp = explode(" ", $_SESSION['USU']['PNAME']); ?>
+            <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME']); ?>
+            <a href="#" class="d-block"><?php echo $temp[0]; ?></br> <?php echo $temp2[0]; ?> </a>
           </div>
         </div>
-
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" style="color: white">
+          <div class="sidebar-brand-icon rotate-n-15">
+          </div>
+          <?php
+          $row = $result2->fetch_assoc();
+          ?>
+          <div class="sidebar-brand-text mx-3"><?php echo $row['NOMBRE'] ?></div>
+        </a>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -108,70 +113,34 @@ $faltaInjustificada="FALTA INJUSTIFICADA";
                with font-awesome or any other icon font library -->
 
             <li class="nav-item">
-              <a href="./index.php" class="nav-link active">
+              <a href="./index.php" class="nav-link ">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Inicio
                 </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-book" aria-hidden="true"></i>
-                <span>Asignaturas</span>
-              </a>
-              <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                  <h6 class="collapse-header">Asignaturas:</h6>
-                  <?php
-                  if ($result2->num_rows > 0) {
-                    while ($row = $result2->fetch_assoc()) {
-                  ?>
-                      <a class="collapse-item" href="./subject.php?codigoAsignatura=<?php echo $row['COD_ASIGNATURA'] ?>"><i class="fas fa-fw fa-book"></i>
-                        <span><?php echo $row["NOMBRE"]; ?></span></a>
-                    <?php
-                    }
-                  } else { ?>
-                    <a class="collapse-item" href="#"><i class="fas fa-fw fa-book"></i>
-                      <span>NINGUNA</span></a>
-                  <?php } ?>
-                </div>
-              </div>
-            </li>
+            <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item active">
-              <a class="nav-link collapsed" href="./grade.php" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-check-circle"></i>
-                <span>Calificaciones</span>
+              <a class="nav-link collapsed" href="./Tarea.php?codigoAsignatura=<?php echo $_GET['codigoAsignatura'] ?>" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-edit"></i>
+                <span>Tareas</span>
               </a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
             <li class="nav-item">
-              <a class="nav-link collapsed" href="./assistance.php" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-child"></i>
-                <span>Asistencia</span>
-              </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="./schedule.php" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-calendar"></i>
-                <span>Horario</span>
-              </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="./changePassword.php" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                <span>Cambio de contraseña</span>
+              <a class="nav-link collapsed" href="./Comunicado.php?codigoAsignatura=<?php echo $_GET['codigoAsignatura'] ?>" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-bullhorn"></i>
+                <span>Comunicados</span>
               </a>
             </li>
 
+          </ul>
+          </li>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
@@ -185,111 +154,119 @@ $faltaInjustificada="FALTA INJUSTIFICADA";
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Asistencia</h1>
+              <h1>Comunicado</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                <li class="breadcrumb-item active">Asistencia</li>
+                <li class="breadcrumb-item">Materia</li>
+                <li class="breadcrumb-item active">Comunicado</li>
               </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
       </section>
 
-      <div class="row justify-content-center ">
-          <div class="card-body">
-                <div class="table-responsive">
-                  <table id="t01" class="table table-bordered" width="100%" cellspacing="0">
-                    <thead>
-                      <tr>
-                        <th class="text-center">Fecha</th>
-                        <th class="text-center">Estado</th>
-                      </tr>
-                    </thead>
-<!--                     <tfoot>
-                      <tr>
-                        <th class="text-center">Fecha</th>
-                        <th class="text-center">Estado</th>
-                      </tr>
-                    </tfoot> -->
-                    <tbody>
-                    <?php
-                       if ($result->num_rows > 0) {
-                           while ($row = $result->fetch_assoc()) {
-                    ?>
-                      <tr>
-                        <td class="text-center"><?php echo $row["FECHA"]; ?></td>
-                          <?php if($row["ESTADO"]=="ASI"){?>
-                            <td class="text-center ">
-                            <div class="success icon-split">
-                              <span class="icon text-success">
-                              <i class="fas fa-check"></i></span>
-                              <span class="text-success">ASISTIÓ</span>
-                            </div></td>
-                            <?php } else if($row["ESTADO"]=="FJU"){  ?>
-                              <td class="text-center ">
-                              <div class="success icon-split">
-                                <span class="icon text-info">
-                                <i class="fas fa-flag"></i></span>
-                                <span class="text-info">FALTA JUSTIFICADA</span>
-                              </div></td>
-                            <?php } else if($row["ESTADO"]=="FIN"){  ?>
-                              <td class="text-center ">
-                              <div class="success icon-split">
-                                <span class="icon text-danger">
-                                <i class="fas fa-exclamation-triangle"></i></span>
-                                <span class="text-danger">FALTA INJUSTIFICADA</span>
-                              </div></td>
-                            <?php } ?>
-                      </tr>
-                      <?php
-                             }
-                         } 
-                         else { ?>
-                             <tr>
-                                 <td colspan="2" class="text-center">NO HAY REGISTROS</td>
-                             </tr>
-                      <?php } ?>
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+          <!-- Topbar -->
+          <?php
+          include '../views/partials/header.php';
+          ?>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+              <h1 class="h3 mb-0 text-gray-800"></h1>
+
+            </div>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+              <!-- DataTales Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="t01" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th class="text-center">Asunto</th>
+                          <th class="text-center">Detalle</th>
+                          <th class="text-center">Fecha</th>
+                        </tr>
+                      </thead>
+                      <!--                     <tfoot>
+                <tr>
+                  <th class="text-center">Asunto</th>  
+                  <th class="text-center">Detalle</th>
+                  <th class="text-center">Fecha</th>
+                </tr>
+              </tfoot> -->
+                      <tbody>
+                        <?php
+                        if ($result->num_rows > 0) {
+                          while ($row = $result->fetch_assoc()) {
+                        ?>
+                            <tr>
+                              <td class="text-center"><?php echo $row["ASUNTO_COMUNICADO"]; ?></td>
+                              <td class="text-center"><?php echo $row["DETALLE_COMUNICADO"]; ?></td>
+                              <td class="text-center"><?php echo date('d/m/y') ?></td>
+                            </tr>
+                          <?php
+                          }
+                        } else { ?>
+                          <tr>
+                            <td colspan="3" class="text-center">NO HAY COMUNICADOS</td>
+                          </tr>
+                        <?php } ?>
                       </tbody>
-                  </table>
+                    </table>
+                  </div>
                 </div>
               </div>
 
-
-
+            </div>
           </div>
 
+        </div>
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+      </section>
 
-      <!-- right col -->
     </div>
-    <!-- /.row (main row) -->
-  </div><!-- /.container-fluid -->
-  </section>
 
-  </div>
 
-  <!-- /.content-wrapper -->
+
+
+    <!-- /.content-wrapper -->
 
     <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <p>
-                Copyright &copy;
-                <script>
-                    document.write(new Date().getFullYear());
-                </script> All rights reserved | SeedSchool
-            </p>
-        </div>
+      <div class="float-right d-none d-sm-block">
+        <p>
+          Copyright &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script> All rights reserved | SeedSchool
+        </p>
+      </div>
 
     </footer>
 
-    
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
   <!-- ../wrapper -->
 
