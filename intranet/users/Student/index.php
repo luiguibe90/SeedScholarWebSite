@@ -5,8 +5,8 @@ if (!isset($_SESSION['USU'])) {
   header('Location: ../../../Seed/login.html');
 }
 $alumnoService = new studentService();
-$result2 = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
-$result = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
+// $result2 = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
+// $result = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
 ?>
 
 <!DOCTYPE html>
