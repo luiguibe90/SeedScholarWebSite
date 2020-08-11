@@ -235,7 +235,7 @@ $aspirantService = new aspirantService();
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect01">Periodo</label>
                                         </div>
-                                        <select class="custom-select" id="selectModulos">
+                                        <select class="custom-select" id="selectPeriods">
 
                                         </select>
                                         <div class="input-group-append">
@@ -380,7 +380,7 @@ $aspirantService = new aspirantService();
 
                     $.fn.dataTable.ext.errMode = 'none'
 
-                    llenarSelectModulos()
+                    fillSelectPeriods()
 
                 });
 
@@ -444,15 +444,15 @@ $aspirantService = new aspirantService();
                     });
                 }
 
-                function llenarSelectModulos() {
+                function fillSelectPeriods() {
                     $.ajax({
                         url: "periodGetService.php?selectPeriods=true",
                         data: {},
                         type: "POST",
                         success: function(data) {
                             if (data != "mal") {
-                                var selectModulos = document.getElementById("selectModulos");
-                                selectModulos.innerHTML = data;
+                                var selectPeriods = document.getElementById("selectPeriods");
+                                selectPeriods.innerHTML = data;
                                 var selectPeriodShedule = document.getElementById("selectPeriodShedule");
                                 selectPeriodShedule.innerHTML = data;
                             }
@@ -485,7 +485,7 @@ $aspirantService = new aspirantService();
                 }
 
                 function tablaFunciones() {
-                    var modulo = document.getElementById('selectModulos').value
+                    var modulo = document.getElementById('selectPeriods').value
                     tblfunc = $('#tblfunc').DataTable({
                         "ajax": "periodGetService.php?listShedules=true&modulo=" + modulo,
                         "columns": [{

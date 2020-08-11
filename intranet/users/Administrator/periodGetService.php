@@ -43,7 +43,7 @@ if (isset($_GET['newShedule'])) {
 }
 
 if (isset($_GET['listShedules'])) {
-  $periodService->showShedule();
+  $periodService->showShedule($_GET['modulo']);
 }
 
 

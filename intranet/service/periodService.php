@@ -76,7 +76,7 @@ function insertNewShedule($codPeriod,$typeShedule,$descripShedule,$dateSchedule)
   }
 }
 
-function showShedule(){
+function showShedule($modulo){
 $consult = $this->conex->query("
 SELECT
 REGLA_PERIODO.COD_REGLA_PERIODO,
@@ -86,7 +86,7 @@ REGLA_PERIODO.VALOR
 FROM
 REGLA_PERIODO
 INNER JOIN PERIODO_LECTIVO ON REGLA_PERIODO.COD_PERIODO_LECTIVO = PERIODO_LECTIVO.COD_PERIODO_LECTIVO
-WHERE PERIODO_LECTIVO.COD_PERIODO_LECTIVO = 1
+WHERE PERIODO_LECTIVO.COD_PERIODO_LECTIVO = $modulo
 ");
 while ($row = $consult->fetch_assoc()) {    
   $datos['data'][] = $row;
