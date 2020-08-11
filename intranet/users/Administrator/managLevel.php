@@ -1,4 +1,6 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+
 session_start();
 if (!isset($_SESSION['USU'])) {
     header('Location: ../../../Seed/login.html');
@@ -6,8 +8,8 @@ if (!isset($_SESSION['USU'])) {
 
 include '../../service/administratorService.php';
 include '../../service/aspirantService.php';
-$aspirantService = new aspirantService();
 
+$aspirantService = new aspirantService();
 
 ?>
 
@@ -183,7 +185,7 @@ $aspirantService = new aspirantService();
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./assignLevel.php" class="nav-link">
+                                    <a href="./managLevel.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Niveles</p>
                                     </a>
@@ -220,32 +222,39 @@ $aspirantService = new aspirantService();
             </section>
 
             <br><br>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <b>Niveles Lectivos</b>
+                            </div>
+                            <div class="card-body">
+                                <center><button type="button" class="btn btn-success" data-toggle='modal'
+                                        data-target='#newlevel'>Nuevo Nivel</button></center>
+                                <br><br>
+                                <table class="display responsive nowrap" style="width:100%; cursor: pointer;"
+                                    id="tableLevel">
+                                    <thead>
+                                        <tr>
+                                            <th>Cod Nivel E.</th>
+                                            <th>Nombre</th>
+                                            <th>Nivel</th>
+                                            <th>Fecha Final</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <div class="card">
-                <div class="card-header">
-                    <b>GESTIÓN NIVELES</b>
-                </div>
-                <div class="card-body">
-                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevoModulo">Nuevo Nivel</button></center>
-                    <br><br>
-                    <div id="tblModulos_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="tblModulos_length"><label>Mostrar <select name="tblModulos_length" aria-controls="tblModulos" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> Entradas</label></div><div id="tblModulos_filter" class="dataTables_filter"><label>Buscar:<input type="search" class="" placeholder="" aria-controls="tblModulos"></label></div><table class="display responsive nowrap dataTable no-footer" style="width:100%; cursor: pointer;" id="tblModulos" role="grid" aria-describedby="tblModulos_info">
-                        <thead>
-                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="tblModulos" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id: activate to sort column descending" style="width: 75.2px;">Id</th><th class="sorting" tabindex="0" aria-controls="tblModulos" rowspan="1" colspan="1" aria-label="Nombre: activate to sort column ascending" style="width: 177.2px;">Nivel</th><th class="sorting" tabindex="0" aria-controls="tblModulos" rowspan="1" colspan="1" aria-label="Estado: activate to sort column ascending" style="width: 152px;">Estado</th><th class="sorting" tabindex="0" aria-controls="tblModulos" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 42.4px;"></th></tr>
-                        </thead>
-                        <tbody>
-                        <tr class="odd"><td valign="top" colspan="4" class="dataTables_empty">Sin resultados encontrados</td></tr></tbody>
-                    </table><div class="dataTables_info" id="tblModulos_info" role="status" aria-live="polite">Mostrando 0 to 0 of 0 Entradas</div><div class="dataTables_paginate paging_simple_numbers" id="tblModulos_paginate"><a class="paginate_button previous disabled" aria-controls="tblModulos" data-dt-idx="0" tabindex="-1" id="tblModulos_previous">Anterior</a><span></span><a class="paginate_button next disabled" aria-controls="tblModulos" data-dt-idx="1" tabindex="-1" id="tblModulos_next">Siguiente</a></div></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <!-- Modal -->
-    <div class="modal fade" id="nuevoModulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="newlevel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -260,8 +269,16 @@ $aspirantService = new aspirantService();
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">Nombre del Nivel</span>
                         </div>
+                        <input type="text" class="form-control" placeholder="Nombre Nivel" aria-label="Username"
+                            aria-describedby="basic-addon1" id="nameLevel">
+                        
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Nivel</span>
+                        </div>
                         <input type="text" class="form-control" placeholder="Nivel" aria-label="Username"
-                            aria-describedby="basic-addon1" id="nombre">
+                            aria-describedby="basic-addon1" id="nLevel">
                     </div>
                 </div>
 
@@ -297,12 +314,12 @@ $aspirantService = new aspirantService();
 
         $(document).ready(function () {
 
-            var tblModulos = $('#tblModulos').DataTable({
-                "ajax": "consultas/modulos.php?listaModulos=true",
+            var tableLevel = $('#tableLevel').DataTable({
+                "ajax": "getlevelService.php?listlevel=true",
                 "columns": [
-                    { "data": "COD_MODULO" },
+                    { "data": "COD_NIVEL_EDUCATIVO",visible:false},
                     { "data": "NOMBRE" },
-                    { "data": "ESTADO" },
+                    { "data": "NIVEL" },
                     { "data": null, "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#exampleModal'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarModulo()'>Desactivar</button>", orderData: false },
                 ],
                 "language": {
@@ -324,8 +341,8 @@ $aspirantService = new aspirantService();
                     }
                 }
             });
-            $('#tblModulos tbody').on('click', 'td', function () {
-                var data = tblModulos.row($(this).parents('tr')).data();
+            $('#tableLevel tbody').on('click', 'td', function () {
+                var data = tableLevel.row($(this).parents('tr')).data();
                 id = data['COD_MODULO'];
                 document.getElementById('nombreModulo').value = data['NOMBRE']
                 document.getElementById('estadoModulo').value = data['ESTADO']
@@ -509,7 +526,7 @@ $aspirantService = new aspirantService();
                 success: function (data) {
                     if (data == "exito") {
                         alert("El módulo ha sido eliminado exitosamente")
-                        $('#tblModulos').DataTable().ajax.reload()
+                        $('#tableLevel').DataTable().ajax.reload()
                     }
                 },
             });
@@ -526,23 +543,25 @@ $aspirantService = new aspirantService();
                     if (data == "exito") {
                         alert("El módulo ha sido editado exitosamente")
                         $('#cerrarModal').click()
-                        $('#tblModulos').DataTable().ajax.reload()
+                        $('#tableLevel').DataTable().ajax.reload()
                     }
                 },
             });
         }
 
         function crearNuevo() {
-            var nombre = document.getElementById('nombre').value
+            var nameLevel = document.getElementById('nameLevel').value
+            var nLevel = document.getElementById('nLevel').value
             $.ajax({
-                url: "./consultas/modulos.php?nuevoModulo=true",
-                data: { nombre: nombre },
+                url: "getlevelService.php?newLevel=true",
+                data: { nameLevel: nameLevel, nLevel:nLevel },
                 type: "POST",
                 success: function (data) {
                     if (data == "exito") {
-                        alert("El módulo ha sido registrado exitosamente")
+                        alert("El nivel ha sido registrado exitosamente")
                         $('#cerrar').click()
-                        $('#tblModulos').DataTable().ajax.reload()
+                        $('#tableLevel').DataTable().ajax.reload()
+                        location.reload()
                     }
                 },
             });
@@ -616,7 +635,6 @@ $aspirantService = new aspirantService();
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

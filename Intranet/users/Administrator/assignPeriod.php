@@ -3,23 +3,24 @@ session_start();
 if (!isset($_SESSION['USU'])) {
     header('Location: ../../../Seed/login.html');
 }
-
+header('Access-Control-Allow-Origin: *');
+date_default_timezone_set('America/Bogota');
 include '../../service/administratorService.php';
 include '../../service/aspirantService.php';
-$aspirantService = new aspirantService();
 
+$aspirantService = new aspirantService();
 
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php echo $_SESSION['USU']['ROL'] ?>|Seed School</title>
     <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -41,16 +42,14 @@ $aspirantService = new aspirantService();
     <!-- Google Font: Source Sans Pro -->
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-    <title>Exámen 2do Parcial</title>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body id="all" class="hold-transition sidebar-mini layout-fixed">
 
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -72,7 +71,8 @@ $aspirantService = new aspirantService();
             <!-- SEARCH FORM -->
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                        aria-label="Search">
                     <div class="input-group-append">
                         <button class="btn btn-navbar" type="submit">
                             <i class="fas fa-search"></i>
@@ -106,7 +106,8 @@ $aspirantService = new aspirantService();
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
@@ -183,7 +184,7 @@ $aspirantService = new aspirantService();
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./assignLevel.php" class="nav-link">
+                                    <a href="./managLevel.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Niveles</p>
                                     </a>
@@ -196,7 +197,7 @@ $aspirantService = new aspirantService();
                                 </li>
                             </ul>
                         </li>
-                        
+
                 </nav>
             </div>
         </aside>
@@ -219,45 +220,151 @@ $aspirantService = new aspirantService();
                 </div>
             </section>
 
-            <br><br>
+            <section>
 
-            <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <div class="card">
-                <div class="card-header">
-                    <b>GESTIÓN PERIODOS ACADÉMICOS</b>
-                </div>
-                <div class="card-body">
-                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevoModulo">Nuevo Periodo</button></center>
-                    <br><br>
-                    <div id="tblModulos_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="tblModulos_length"><label>Mostrar <select name="tblModulos_length" aria-controls="tblModulos" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> Entradas</label></div><div id="tblModulos_filter" class="dataTables_filter"><label>Buscar:<input type="search" class="" placeholder="" aria-controls="tblModulos"></label></div><table class="display responsive nowrap dataTable no-footer" style="width:100%; cursor: pointer;" id="tblModulos" role="grid" aria-describedby="tblModulos_info">
-                        <thead>
-                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="tblModulos" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id: activate to sort column descending" style="width: 75.2px;">Id</th><th class="sorting" tabindex="0" aria-controls="tblModulos" rowspan="1" colspan="1" aria-label="Nombre: activate to sort column ascending" style="width: 177.2px;">Nombre Periodo</th><th class="sorting" tabindex="0" aria-controls="tblModulos" rowspan="1" colspan="1" aria-label="Estado: activate to sort column ascending" style="width: 152px;">Quimestre</th><th class="sorting" tabindex="0" aria-controls="tblModulos" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 42.4px;"></th></tr>
-                        </thead>
-                        <tbody>
-                        <tr class="odd"><td valign="top" colspan="4" class="dataTables_empty">Sin resultados encontrados</td></tr></tbody>
-                    </table><div class="dataTables_info" id="tblModulos_info" role="status" aria-live="polite">Mostrando 0 to 0 of 0 Entradas</div><div class="dataTables_paginate paging_simple_numbers" id="tblModulos_paginate"><a class="paginate_button previous disabled" aria-controls="tblModulos" data-dt-idx="0" tabindex="-1" id="tblModulos_previous">Anterior</a><span></span><a class="paginate_button next disabled" aria-controls="tblModulos" data-dt-idx="1" tabindex="-1" id="tblModulos_next">Siguiente</a></div></div>
-                </div>
-            </div>
-        </div>
-    </div>
+                <br><br>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <b>Periodos Lectivos</b>
+                            </div>
+                            <div class="card-body">
+                                <center><button type="button" class="btn btn-success" data-toggle='modal'
+                                        data-target='#newPeriod'>Nuevo Periodo</button></center>
+                                <br><br>
+                                <table class="display responsive nowrap" style="width:100%; cursor: pointer;"
+                                    id="tablePeriods">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo Periodo</th>
+                                            <th>Estado</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Final</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
-    
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="newPeriod" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Periodo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Estado</span>
+                                        </div>
+                                        <select class="custom-select" id="statePeriod">
+                                            <option value="ACT" selected>ACTIVO</option>
+                                            <option value="INA">INACTIVO</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Fecha Inicio Periodo</span>
+                                        </div>
+                                        <input type="date" class="form-control" placeholder="Nombre"
+                                            aria-label="Username" aria-describedby="basic-addon1" id="dateStartPeriod">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Fecha Final Periodo</span>
+                                        </div>
+                                        <input type="date" class="form-control" placeholder="Nombre"
+                                            aria-label="Username" aria-describedby="basic-addon1" id="dateEndPeriod">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success"
+                                        onclick="crearNuevo()">Guardar</button>
+                                    <button id="cerrar" type="button" class="btn btn-danger"
+                                        data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal Change Period-->
+                    <div class="modal fade" id="changePeriod" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar Periodo Lectivo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Estado del
+                                                Periodo</label>
+                                        </div>
+                                        <select class="custom-select" id="modstatePeriod">
+                                            <option value="ACT" selected>ACTIVO</option>
+                                            <option value="INA">INACTIVO</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Fecha Inicio</span>
+                                        </div>
+                                        <input type="date" class="form-control" placeholder="Nombre"
+                                            aria-label="Username" aria-describedby="basic-addon1" id="moddateStartPeriod">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Fecha Final</span>
+                                        </div>
+                                        <input type="date" class="form-control" placeholder="Nombre"
+                                            aria-label="Username" aria-describedby="basic-addon1" id="moddateEndPeriod">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" onclick="guardarCambios()">Guardar
+                                        Cambios</button>
+                                    <button id="cerrarModal" type="button" class="btn btn-danger"
+                                        data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br>
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
             <div class="card">
                 <div class="card-header">
-                    <b>GESTIÓN CROGRAMA ACADÉMICO</b>
+                    <b>Cronograma por Periodo</b>
                 </div>
                 <div class="card-body">
-                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevaFuncionalidad">Nuevo Cronograma</button></center>
+                    <center><button type="button" class="btn btn-success" data-toggle='modal'
+                            data-target='#newSchedule'>Nuevo Cronograma</button></center>
                     <br><br>
                     <center>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Cronogramas</label>
+                                <label class="input-group-text" for="inputGroupSelect01">Periodo</label>
                             </div>
                             <select class="custom-select" id="selectModulos">
 
@@ -271,10 +378,10 @@ $aspirantService = new aspirantService();
                     <table class="display responsive nowrap" style="width:100%; cursor: pointer;" id="tblfunc">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Periodo</th>
-                                <th>Inicio del año electivo</th>
-                                <th>Fin del año electivo</th>
+                                <th>Codigo Cronograma</th>
+                                <th>Tipo</th>
+                                <th>Descripcion</th>
+                                <th>Fecha</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -284,208 +391,47 @@ $aspirantService = new aspirantService();
                 </div>
             </div>
         </div>
-    </div>
+    </div><br><br>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="nuevoModulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- Modal  Menu Select Funcionalidad-->
+    <div class="modal fade" id="newSchedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Periodo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                
-
-
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Nombre del Periodo</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Periodo" aria-label="Username"
-                            aria-describedby="basic-addon1" id="nombreModulo">
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Quimestre</label>
-                        </div>
-                        <select class="custom-select" id="selecmodulos">
-
-                        </select>
-                    </div>
-                </div>
-
-                <!-- /.card-header -->
-                <form role="form" data-toggle="validator" method="post">
-                                    <div class="card-body">
-                                        
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Fechas de ingreso de Notas</label>
-                                            <input type="date" class="form-control" id="exampleText" name="dateBrhRepresentative" placeholder="Ingrese su Fecha de Nacimiento">
-                                            
-                                        </div>
-                                        <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevaFuncionalidadNota">Nueva Fecha</button></center>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Fechas de Exámenes</label>
-                                            <input type="date" class="form-control" id="exampleText" name="dateBrhRepresentative" placeholder="Ingrese su Fecha de Nacimiento">
-                                           
-                                        </div>
-                                        <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevaFuncionalidadExamen">Nueva Fecha</button></center>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Fechas de Pruebas</label>
-                                            <input type="date" class="form-control" id="exampleText" name="dateBrhRepresentative" placeholder="Ingrese su Fecha de Nacimiento">
-                                        </div>
-                                        <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevaFuncionalidadPrueba">Nueva Fecha</button></center>
-                                        
-                                    </div>
-                    <!-- /.card-body -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="crearNuevo()">Guardar</button>
-                    <button id="cerrar" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="nuevaFuncionalidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cronograma académico</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Cronograma</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <label>Seleccionar el periodo académico: </label>
+                    <label>Seleccionar el Periodo: </label>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Periodo Académico</label>
+                            <label class="input-group-text" for="inputGroupSelect01">Periodo</label>
                         </div>
-                        <select class="custom-select" id="selectModulosFuncionalidad">
+                        <select class="custom-select" id="selectPeriodShedule">
                         </select>                        
                     </div>
-                    
-                     <!-- /.card-header -->
-                                <form role="form" data-toggle="validator" method="post">
-                                    <div class="card-body">
-                                        
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Fecha inicio del año electivo</label>
-                                            <input type="date" class="form-control" id="exampleText" name="dateBrhRepresentative" placeholder="Ingrese su Fecha de Nacimiento">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Fecha fin del año electivo</label>
-                                            <input type="date" class="form-control" id="exampleText" name="dateBrhRepresentative" placeholder="Ingrese su Fecha de Nacimiento">
-                                        </div>
-
-                                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="guardarFuncionNuevo()">Guardar Cambios</button>
-                    <button id="cerrarNue" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="nuevaFuncionalidadNota" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Periodo académico</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label>Seleccionar una nueva fecha: </label>
-                    
-                     <!-- /.card-header -->
-                                <form role="form" data-toggle="validator" method="post">
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Fecha ingreso nota</label>
-                                            <input type="date" class="form-control" id="exampleText" name="dateBrhRepresentative" placeholder="Ingrese su Fecha de Nacimiento">
-                                        </div>
-                                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="guardarFuncionNuevo()">Guardar Cambios</button>
-                    <button id="cerrarNue" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="nuevaFuncionalidadExamen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Periodo académico</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label>Seleccionar una nueva fecha: </label>
-                    
-                     <!-- /.card-header -->
-                                <form role="form" data-toggle="validator" method="post">
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Fecha de Exámen</label>
-                                            <input type="date" class="form-control" id="exampleText" name="dateBrhRepresentative" placeholder="Ingrese su Fecha de Nacimiento">
-                                        </div>
-                                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="guardarFuncionNuevo()">Guardar Cambios</button>
-                    <button id="cerrarNue" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="nuevaFuncionalidadPrueba" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Periodo académico</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label>Seleccionar una nueva fecha: </label>
-                    
-                     <!-- /.card-header -->
-                                <form role="form" data-toggle="validator" method="post">
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Fecha de Prueba</label>
-                                            <input type="date" class="form-control" id="exampleText" name="dateBrhRepresentative" placeholder="Ingrese su Fecha de Nacimiento">
-                                        </div>
-                                    </div>
-                    <!-- /.card-body -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Tipo</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Tipo" id="typeShedule">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Descripción</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Descripción" id="descripShedule">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Fecha</span>
+                        </div>
+                        <input type="date" class="form-control" placeholder="Fecha" id="dateShedule">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" onclick="guardarFuncionNuevo()">Guardar Cambios</button>
@@ -497,79 +443,195 @@ $aspirantService = new aspirantService();
 
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+            </section>
 
-    <script>
 
-        var id
-        var tblfunc
-        var roles
-        var idRol
-        var idModulo
 
-        $(document).ready(function () {
 
-            var tblModulos = $('#tblModulos').DataTable({
-                "ajax": "consultas/modulos.php?listaModulos=true",
-                "columns": [
-                    { "data": "COD_MODULO" },
-                    { "data": "NOMBRE" },
-                    { "data": "ESTADO" },
-                    { "data": null, "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#exampleModal'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarModulo()'>Desactivar</button>", orderData: false },
-                ],
-                "language": {
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
+
+
+
+
+
+
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+                integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+                crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+            <script>
+            var id
+            var tblfunc
+            var roles
+            var idRol
+            var idModulo
+
+            $(document).ready(function() {
+
+                var tablePeriods = $('#tablePeriods').DataTable({
+                    "ajax": "./periodGetService.php?listPeriod=true",
+                    "columns": [{
+                            "data": "COD_PERIODO_LECTIVO"
+                        },
+                        {
+                            "data": "ESTADO"
+                        },
+                        {
+                            "data": "FECHA_INICIO"
+                        },
+                        {
+                            "data": "FECHA_FIN"
+                        },
+                        {
+                            "data": null,
+                            "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#changePeriod'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarModulo()'>Desactivar</button>",
+                            orderData: false
+                        },
+                    ],
+                    "language": {
+                        "emptyTable": "No hay información",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+                });
+                $('#tablePeriods tbody').on('click', 'td', function() {
+                    var data = tablePeriods.row($(this).parents('tr')).data();
+                    id = data['COD_PERIODO_LECTIVO'];
+                    document.getElementById('modstatePeriod').value = data['ESTADO']
+                    document.getElementById('moddateStartPeriod').value = data['FECHA_INICIO']
+                    document.getElementById('moddateEndPeriod').value = data['FECHA_FIN']
+
+                });
+
+                $.fn.dataTable.ext.errMode = 'none'
+                
+                llenarSelectModulos()
+
+            });
+
+
+            function eliminarModulo() {
+                $.ajax({
+                    url: "./consultas/modulos.php?eliminarModulo=true&id=" + id,
+                    data: {},
+                    type: "POST",
+                    success: function(data) {
+                        if (data == "exito") {
+                            alert("El módulo ha sido eliminado exitosamente")
+                            $('#tablePeriods').DataTable().ajax.reload()
+                        }
+                    },
+                });
+            }
+
+            function guardarCambios() {
+
+                var estate = document.getElementById('modstatePeriod').value
+                var dateInitial = document.getElementById('moddateStartPeriod').value
+                var dateFinal = document.getElementById('moddateEndPeriod').value
+                $.ajax({
+                    url: "periodGetService.php?editarModulo=true&id=" + id,
+                    data: {
+                        estate: estate,
+                        dateInitial: dateInitial,
+                        dateFinal: dateFinal
+                    },
+                    type: "POST",
+                    success: function(data) {
+                        if (data == "exito") {
+                            alert("El módulo ha sido editado exitosamente")
+                            $('#cerrarModal').click()
+                            $('#tablePeriods').DataTable().ajax.reload()
+                        }
+                    },
+                });
+            }
+
+            function crearNuevo() {
+                var stateP = document.getElementById('statePeriod').value
+                var dateI = document.getElementById('dateStartPeriod').value
+                var dateF = document.getElementById('dateEndPeriod').value
+                $.ajax({
+                    url: "./periodGetService.php?newPeriod=true",
+                    data: {
+                        stateP: stateP,
+                        dateI: dateI,
+                        dateF: dateF
+                    },
+                    type: "POST",
+                    success: function(data) {
+                        if (data == "exito") {
+                            alert("El módulo ha sido registrado exitosamente")
+                            $('#cerrar').click()
+                            $('#tablePeriods').DataTable().ajax.reload()
+                        }
+                    },
+                });
+            }
+
+            function llenarSelectModulos() {
+            $.ajax({
+                url: "periodGetService.php?selectPeriods=true",
+                data: {},
+                type: "POST",
+                success: function (data) {
+                    if (data != "mal") {
+                        var selectModulos = document.getElementById("selectModulos");
+                        selectModulos.innerHTML = data;
+                        var selectPeriodShedule = document.getElementById("selectPeriodShedule");
+                        selectPeriodShedule.innerHTML = data;
                     }
                 }
             });
-            $('#tblModulos tbody').on('click', 'td', function () {
-                var data = tblModulos.row($(this).parents('tr')).data();
-                id = data['COD_MODULO'];
-                document.getElementById('nombreModulo').value = data['NOMBRE']
-                document.getElementById('estadoModulo').value = data['ESTADO']
+            }
+            function guardarFuncionNuevo() {
+            var type = document.getElementById('typeShedule').value
+            var descrip = document.getElementById('descripShedule').value
+            var dateS = document.getElementById('dateShedule').value
+            var selectNewPeriod = document.getElementById('selectPeriodShedule').value
+            $.ajax({
+                url: "./periodGetService.php?newShedule=true",
+                data: { type:type,descrip:descrip,dateS:dateS, modulo: selectNewPeriod },
+                type: "POST",
+                success: function (data) {
+                    if (data == "exito") {
+                        alert("El nuevo cronograma ha sido guardado exitosamente")
+                        $('#cerrarNue').click()
+                        $('#tblfunc').DataTable().ajax.reload()
+                    }
+                },
             });
-
-            $.fn.dataTable.ext.errMode = 'none'
-
-            llenarSelectModulos()
-            llenarSelectRoles()
-            llenarVarios()
-
-        });
+        }
 
         function tablaFunciones() {
             var modulo = document.getElementById('selectModulos').value
             tblfunc = $('#tblfunc').DataTable({
-                "ajax": "consultas/modulos.php?listaFunciones=true&modulo=" + modulo,
+                "ajax": "periodGetService.php?listShedules=true&modulo=" + modulo,
                 "columns": [
-                    { "data": "COD_FUNCIONALIDAD", visible: false },
-                    { "data": "URL_PRINCIPAL" },
-                    { "data": "NOMBRE" },
-                    { "data": "DESCRIPCION" },
+                    { "data": "COD_REGLA_PERIODO", visible: false },
+                    { "data": "TIPO" },
+                    { "data": "NOMBRE_REGLA" },
+                    { "data": "VALOR" },
                     { "data": null, "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#modalFuncion'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarFuncion()'>Eliminar</button>", orderData: false },
                 ],
                 "destroy": true,
@@ -600,287 +662,63 @@ $aspirantService = new aspirantService();
                 document.getElementById('descriFuncion').value = data['DESCRIPCION']
             });
         }
-
-        function tablaRoles() {
-            var rol = document.getElementById('selectRoles').value
-            roles = $('#roles').DataTable({
-                "ajax": "consultas/modulos.php?listaRoles=true&rol=" + rol,
-                "columns": [
-                    { "data": "COD_ROL", visible: false },
-                    { "data": "COD_MODULO", visible: false },
-                    { "data": "NOMBRE" },
-                    { "data": null, "defaultContent": "<button class='btn btn-sm rounded btn-danger' onclick='eliminarRol()'>Eliminar</button>", orderData: false },
-                ],
-                "destroy": true,
-                "language": {
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
-                }
-            });
-            $('#roles tbody').on('click', 'td', function () {
-                var data = roles.row($(this).parents('tr')).data();
-                idModulo = data['COD_MODULO'];
-                idRol = data['COD_ROL']
-                document.getElementById('nombreModulo').value = data['NOMBRE']
-                document.getElementById('estadoModulo').value = data['ESTADO']
-            });
-        }
-
-        function eliminarFuncion() {
-            $.ajax({
-                url: "./consultas/modulos.php?eliminarFuncion=true&idFuncion=" + idFunc,
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("La funcionalidad ha sido eliminado exitosamente")
-                        $('#tblfunc').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function eliminarRol() {
-            $.ajax({
-                url: "./consultas/modulos.php?eliminarRol=true&idRol=" + idRol + '&idModulo=' + idModulo,
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("El módulo ha sido eliminado exitosamente")
-                        $('#roles').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function llenarSelectModulos() {
-            $.ajax({
-                url: "./consultas/modulos.php?selectModulos=true",
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data != "mal") {
-                        var selectModulos = document.getElementById("selectModulos");
-                        selectModulos.innerHTML = data;
-                        var selectModulosFuncionalidad = document.getElementById("selectModulosFuncionalidad");
-                        selectModulosFuncionalidad.innerHTML = data;
-                    }
-                }
-            });
-        }
-
-        function llenarSelectRoles() {
-            $.ajax({
-                url: "./consultas/modulos.php?selectRoles=true",
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data != "mal") {
-                        var selectRoles = document.getElementById("selectRoles");
-                        selectRoles.innerHTML = data;
-                    }
-                }
-            });
-        }
-
-        function llenarVarios() {
-            $.ajax({
-                url: "./consultas/modulos.php?selectModulos=true",
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data != "mal") {
-                        var selectModulos = document.getElementById("selecmodulos");
-                        selectModulos.innerHTML = data;
-                    }
-                }
-            });
-            $.ajax({
-                url: "./consultas/modulos.php?selectRoles=true",
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data != "mal") {
-                        var selectRoles = document.getElementById("selecroles");
-                        selectRoles.innerHTML = data;
-                    }
-                }
-            });
-        }
-
-        function eliminarModulo() {
-            $.ajax({
-                url: "./consultas/modulos.php?eliminarModulo=true&id=" + id,
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("El módulo ha sido eliminado exitosamente")
-                        $('#tblModulos').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function guardarCambios() {
-            var nombre = document.getElementById('nombreModulo').value
-            var estado = document.getElementById('estadoModulo').value
-            $.ajax({
-                url: "./consultas/modulos.php?editarModulo=true&id=" + id,
-                data: { nombre: nombre, estado: estado },
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("El módulo ha sido editado exitosamente")
-                        $('#cerrarModal').click()
-                        $('#tblModulos').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function crearNuevo() {
-            var nombre = document.getElementById('nombre').value
-            $.ajax({
-                url: "./consultas/modulos.php?nuevoModulo=true",
-                data: { nombre: nombre },
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("El módulo ha sido registrado exitosamente")
-                        $('#cerrar').click()
-                        $('#tblModulos').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function guardarNuevoRol() {
-            var rol = document.getElementById('selecroles').value
-            var modulo = document.getElementById('selecmodulos').value
-            $.ajax({
-                url: "./consultas/modulos.php?nuevoRol=true",
-                data: { rol: rol, modulo: modulo },
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("El módulo ha sido registrado exitosamente")
-                        $('#cerrarRol').click()
-                        $('#roles').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function guardarFuncion() {
-            var url = document.getElementById('urlPrincipal').value
-            var nombre = document.getElementById('nombreFuncion').value
-            var descripcion = document.getElementById('descriFuncion').value
-            $.ajax({
-                url: "./consultas/modulos.php?editarFuncion=true",
-                data: { urlP: url, nombre: nombre, descripcion: descripcion, id: idFunc },
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("Los cambios han sido guardados exitosamente")
-                        $('#cerrarFuncion').click()
-                        $('#tblfunc').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function guardarFuncionNuevo() {
-            var url = document.getElementById('urlPrincipalNuevo').value
-            var nombre = document.getElementById('nombreFuncionNuevo').value
-            var descripcion = document.getElementById('descriFuncionNuevo').value
-            var selectNuevo = document.getElementById('selectModulosFuncionalidad').value
-            $.ajax({
-                url: "./consultas/modulos.php?nuevaFuncion=true",
-                data: { urlP: url, nombre: nombre, descripcion: descripcion, modulo: selectNuevo },
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("La nueva funcionalidad ha sido guardada exitosamente")
-                        $('#cerrarNue').click()
-                        $('#tblfunc').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-    </script>
+            </script>
 
 
 
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+        </div>
+        <!-- ./wrapper -->
 
-    <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
+        <!-- jQuery -->
+
+        <!-- jQuery UI 1.11.4 -->
+        <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
         $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- ChartJS -->
-    <script src="../../plugins/chart.js/Chart.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- Sparkline -->
-    <script src="../../plugins/sparklines/sparkline.js"></script>
-    <!-- JQVMap -->
-    <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
-    <!-- daterangepicker -->
-    <script src="../../plugins/moment/moment.min.js"></script>
-    <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Summernote -->
-    <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
+        </script>
+        <!-- Bootstrap 4 -->
+        <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- ChartJS -->
+        <script src="../../plugins/chart.js/Chart.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- Sparkline -->
+        <script src="../../plugins/sparklines/sparkline.js"></script>
+        <!-- JQVMap -->
+        <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+        <!-- daterangepicker -->
+        <script src="../../plugins/moment/moment.min.js"></script>
+        <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- Summernote -->
+        <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="../../dist/js/adminlte.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="../../dist/js/demo.js"></script>
 
 </body>
-    <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <p>
-                    Copyright &copy;
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script> All rights reserved | SeedSchool
-                </p>
-            </div>
+<footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+        <p>
+            Copyright &copy;
+            <script>
+            document.write(new Date().getFullYear());
+            </script> All rights reserved | SeedSchool
+        </p>
+    </div>
 
-        </footer>
+</footer>
 
 </html>

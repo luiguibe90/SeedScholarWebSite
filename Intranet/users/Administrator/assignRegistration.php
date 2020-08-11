@@ -183,7 +183,7 @@ $aspirantService = new aspirantService();
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./assignLevel.php" class="nav-link">
+                                    <a href="./managLevel.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Niveles</p>
                                     </a>
@@ -229,7 +229,7 @@ $aspirantService = new aspirantService();
                     <b>GESTIÓN MATRÍCULA</b>
                 </div>
                 <div class="card-body">
-                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevoModulo">Nuevo Alumno</button></center>
+                    <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevoModulo">Matricular Alumno</button></center>
                     <br><br>
                     <div id="tblModulos_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="tblModulos_length"><label>Mostrar <select name="tblModulos_length" aria-controls="tblModulos" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> Entradas</label></div><div id="tblModulos_filter" class="dataTables_filter"><label>Buscar:<input type="search" class="" placeholder="" aria-controls="tblModulos"></label></div><table class="display responsive nowrap dataTable no-footer" style="width:100%; cursor: pointer;" id="tblModulos" role="grid" aria-describedby="tblModulos_info">
                         <thead>
@@ -250,7 +250,7 @@ $aspirantService = new aspirantService();
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Alumno</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Matricular Alumno</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -258,32 +258,76 @@ $aspirantService = new aspirantService();
                 <div class="modal-body">
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Nombre del Alumno</span>
+                            <span class="input-group-text" id="basic-addon1">DNI </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Nombre Completo" aria-label="Username"
-                            aria-describedby="basic-addon1" id="nombre">
+                        <input type="text" class="form-control" placeholder="DNI" aria-label="Username"
+                            aria-describedby="basic-addon1" id="dniAlumn">
+                        <button type="button" class="btn btn-success" data-toggle='modal'
+                                        data-target='#AlumnSearch'>Buscar</button>
+                        
                     </div>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <select name="cars" class="custom-select">
+                            <option selected>Periodo</option>
+                            <option value="volvo">Volvo</option>
+                            <option value="fiat">Fiat</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                      
+                     </form>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <select name="cars" class="custom-select">
+                            <option selected>Nivel</option>
+                            <option value="volvo">Volvo</option>
+                            <option value="fiat">Fiat</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                      
+                     </form>
+                </div>
+
+                
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="crearNuevo()">Matricular</button>
+                    <button id="cerrar" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="AlumnSearch" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Datos del Alumno</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Estado del Alumno</span>
+                            <span class="input-group-text" id="basic-addon1">Nombres del Alumno</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Aprobado / Reprobado" aria-label="Username"
-                            aria-describedby="basic-addon1" id="nombre">
+                        <input type="text" class="form-control" placeholder="Nombre Nivel" aria-label="Username"
+                            aria-describedby="basic-addon1" id="nameAlu">
+                        
                     </div>
-                </div>
-
-
-                <div class="modal-body">
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Estado de Matricula</span>
+                        <span class="input-group-text" id="basic-addon1">Estado</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="ACT / INC" aria-label="Username"
-                            aria-describedby="basic-addon1" id="nombre">
+                        <input type="text" class="form-control" placeholder="Estado" aria-label="Username"
+                            aria-describedby="basic-addon1" id="stateAlumn">
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" onclick="crearNuevo()">Guardar</button>
                     <button id="cerrar" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

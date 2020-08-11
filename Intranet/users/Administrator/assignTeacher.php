@@ -183,7 +183,7 @@ $aspirantService = new aspirantService();
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./assignLevel.php" class="nav-link">
+                                    <a href="./managLevel.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Niveles</p>
                                     </a>
