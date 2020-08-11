@@ -4,34 +4,57 @@ if (!isset($_SESSION['USU'])) {
     header('Location: ../../../Seed/login.html');
 }
 
-include '../../service/administratorService.php';
-include '../../service/studentService.php';
-$studentService = new studentService();
+include '../../service/infraestructuraService.php';
 
-if (isset($_POST["btn_subR"])) {
-
-    $studentService->insertPeopleRepresentative(
-        $_POST["cedRepresentantive"],
-        $_POST["snRepresentative"],
-        $_POST["nameRepresentative"],
-        $_POST["addressRepresentative"],
-        $_POST["telfRepresentative"],
-        $_POST["dateBrhRepresentative"],
-        $_POST["genderR"],
-        $_POST["pemailRepresentative"]
+$infraestructura = new infraestructuraService();
+$sede = "sede";
+$edificio = "edificio";
+$aula = "aula";
+$codigoSede = "";
+$nombreSede = "";
+$direccionSede = "";
+$telefonoSede = "";
+$codPostalSede = "";
+$codigoAula = "";
+$nombreAula = "";
+$capacidadAula = "";
+$pisoAula = "";
+$codigoEdificio = "";
+$nombreEdificio = "";
+$cantidadPisos = "";
+$accion = "Añadir";
+$mensajeSede = "Registrar Nueva Sede";
+$mensaje = "Registro de Nueva Aula";
+$mensajeEdificios = "Registro de nuevo Edificio";
+//SEDE
+if (isset($_POST['accionSede']) && ($_POST['accionSede'] == 'Añadir')) {
+    $infraestructura->insertarSede(
+        $_POST['codigo_sede'],
+        $_POST['nombre_sede'],
+        $_POST['direccion_sede'],
+        $_POST['telefono_sede'],
+        $_POST['cod_postal_sede']
     );
-} elseif (isset($_POST["btn_subA"])) {
-    echo ("<script>console.log('PHP: pass btnA');</script>");
-    $studentService->insertPeopleAlumn(
-        $_POST["cedAlumn"],
-        $_POST["snameAlumn"],
-        $_POST["nameAlumn"],
-        $_POST["addreAlumn"],
-        $_POST["telefAlumn"],
-        $_POST["dateBirthAlumn"],
-        $_POST["genderA"],
-        $_POST["emailpAlumn"]
+} else if (isset($_POST["accionSede"]) && ($_POST["accionSede"] == "Modificar")) {
+    $infraestructura->modificarSede(
+        $_POST['codigo_sede'],
+        $_POST['nombre_sede'],
+        $_POST['direccion_sede'],
+        $_POST['telefono_sede'],
+        $_POST['cod_postal_sede'],
+        $_POST['codigo_sede_comparar']
     );
+} else if (isset($_GET["modificarSede"])) {
+    $result = $infraestructura->encontrarSede($_GET['modificarSede']);
+    if ($result != null) {
+        $codigoSede = $result['COD_SEDE'];
+        $nombreSede = $result['NOMBRE'];
+        $direccionSede = $result['DIRECCION'];
+        $telefonoSede = $result['TELEFONO'];
+        $codPostalSede = $result['CODIGO_POSTAL'];
+        $mensajeSede = "Modificar datos de la Sede";
+        $accion = "Modificar";
+    }
 }
 
 ?>
@@ -130,96 +153,87 @@ if (isset($_POST["btn_subR"])) {
 
             <section class="content">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <h3 class="card-title">Formulario Sede a Modificar:</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <form id="formRepresentative" role="form" action="" data-toggle="validator" method="post">
-                                    <div class="card-body">
-
-                                        <label for="Granados"> Seleccione La Sede: </label>
-                                        <!--debe selecionar la sede a la que pertenece el edificio-->
-                                        <select name="campus" class="form-control">
-
-                                        </select>
-
-                                        <!--Se deben llenar los datos al selecionar el edificio-->
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Nombre Sede</label>
-                                            <input type="text" class="form-control" id="exampleText" name="nameSede" placeholder="Ingrese Nombre de la Sede" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Dirección Sede</label>
-                                            <input type="text" class="form-control" id="exampleText" name="addressRepresentative" placeholder="Ingrese la dirección de la sede" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Teléfono Sede</label>
-                                            <input type="text" class="form-control" id="exampleText" name="telfRepresentative" placeholder="Ingrese  Teléfono de la Sede">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Código Postal</label>
-                                            <input type="text" class="form-control" id="exampleText" name="telfRepresentative" placeholder="Ingrese el código postal de la Sede">
-                                        </div>
-
-
-
-
-
+                    <form id="sedes" method="post" name="sedes" action="">
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Nombre</th>
+                                        <th>Direccion</th>
+                                        <th>Teléfono</th>
+                                        <th>Codigo Postal</th>
+                                        <th>Actualizar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                    $result = $infraestructura->mostrarInfraestructura($sede);
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                    ?>
+                                            <tr>
+                                                <td><?php echo $row["COD_SEDE"]; ?></td>
+                                                <td><?php echo $row["NOMBRE"]; ?></td>
+                                                <td><?php echo $row["DIRECCION"]; ?></td>
+                                                <td><?php echo $row["TELEFONO"]; ?></td>
+                                                <td><?php echo $row["CODIGO_POSTAL"]; ?></td>
+                                                <td>
+                                                    <div>
+                                                        <a href="modifyCampus.php?modificarSede=<?php echo $row["COD_SEDE"]; ?>#sedesForm" class="btn btn-success" type="button">
+                                                            <i class="zmdi zmdi-refresh"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php   }
+                                    } else {
+                                        ?>
+                                        <tr>
+                                            <td>No hay datos en la tabla</td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Modificar Sede</h3>
                                     </div>
-                                    <!-- /.card-body -->
-
-                                </form>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <h3 class="card-title">Formulario Datos Nuevos Sede:</h3>
-                                </div>
-                                <!-- /.card-header -->
-
-                                <form role="form" id="formAlumn" action="" data-toggle="validator" method="post">
-                                    <div class="card-body">
-                                        <div class="card-header">
+                                    <div style="margin-left: 14px;">
+                                    </div>
+                                    <div class="row container-flat-form">
+                                        <div class="card-body">
+                                            <input type="hidden" name="codigo_sede_comparar" value="<?php echo $codigoSede ?>">
+                                            <div class="form-group" id="aulasForm">
+                                                <label for="exampleInputEmail1">Codigo Sede</label>
+                                                <input type="text" class="form-control" placeholder="Código de la sede" required="" data-toggle="tooltip" data-placement="top" title="Escriba el código de la sede" name="codigo_sede" value="<?php echo $codigoSede ?>">
+                                            </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Nombre Sede</label>
-                                                <input type="text" class="form-control" id="exampleText" name="nameSede" placeholder="Ingrese Nombre de la Sede" required>
+                                                <input type="text" class="form-control" placeholder="Nombre de la sede" required="" data-toggle="tooltip" data-placement="top" title="Escriba el nombre de la sede" name="nombre_sede" value="<?php echo $nombreSede ?>">
                                             </div>
-
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Dirección Sede</label>
-                                                <input type="text" class="form-control" id="exampleText" name="addressRepresentative" placeholder="Ingrese la dirección de la sede" required>
+                                                <label for="exampleInputEmail1">Direccion Sede</label>
+                                                <input type="text" class="form-control" placeholder="Dirección de la Sede" required="" data-toggle="tooltip" data-placement="top" title="Escriba la dirección de la Sede" name="direccion_sede" value="<?php echo $direccionSede ?>">
                                             </div>
-
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Teléfono Sede</label>
-                                                <input type="text" class="form-control" id="exampleText" name="telfRepresentative" placeholder="Ingrese  Teléfono de la Sede">
+                                                <input type="text" class="form-control" placeholder="Teléfono de la Sede" required="" data-toggle="tooltip" data-placement="top" title="Escriba el teléfono de la Sede" name="telefono_sede" value="<?php echo $telefonoSede ?>">
                                             </div>
-
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Código Postal</label>
-                                                <input type="text" class="form-control" id="exampleText" name="telfRepresentative" placeholder="Ingrese el código postal de la Sede">
+                                                <input type="text" class="form-control" placeholder="Código Postal" required="" data-toggle="tooltip" data-placement="top" title="Escriba el código postal de la sede" name="cod_postal_sede" value="<?php echo $codPostalSede ?>">
                                             </div>
-                                            <div class="card-footer">
-                                                <button name="btn_subR" type="submit" class="btn btn-primary">Modificar</button>
-                                            </div>
-
+                                            <p class="text-center">
+                                                <input type="submit" name="accionSede" value="Modificar" class="btn btn-primary" style="margin-right: 20px;">
+                                            </p>
                                         </div>
-
                                     </div>
-
-                            </div>
-
-                        </div>
-
+                    </form>
+                </div>
             </section>
 
 
