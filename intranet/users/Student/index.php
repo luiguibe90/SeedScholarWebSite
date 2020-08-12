@@ -108,7 +108,7 @@ $alumnoService = new studentService();
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>9</h3>
+                  <h3>3</h3>
                   <p>Materias</p>
                 </div>
                 <div class="icon">
@@ -153,13 +153,13 @@ $alumnoService = new studentService();
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>8</h3>
-                  <p>Actividades en el Calendario</p>
+                  <h3>.</h3>
+                  <p>Cambio de contraseña</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-calendar"></i>
                 </div>
-                <a href="./Comunicado.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="./changePassword.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col --><
@@ -193,17 +193,7 @@ $alumnoService = new studentService();
 
   <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <p>
-                Copyright &copy;
-                <script>
-                    document.write(new Date().getFullYear());
-                </script> All rights reserved | SeedSchool
-            </p>
-        </div>
-
-    </footer>
+  <?php include("../../views/footer.php");?>
 
     
 
