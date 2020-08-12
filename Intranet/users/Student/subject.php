@@ -1,8 +1,10 @@
 <?php
 session_start();
 if (!isset($_SESSION['USU'])) {
-  header('Location: ../../../Seed/login.html');
+    header('Location: ../../../Seed/login.html');
 }
+include '../../service/studentService.php';
+$studentService = new studentService();
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +62,7 @@ if (!isset($_SESSION['USU'])) {
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="../../dist/img/USUm1.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="../../dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <?php $temp = explode(" ", $_SESSION['USU']['PNAME']); ?>
@@ -110,27 +112,16 @@ if (!isset($_SESSION['USU'])) {
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="callout callout-danger">
-                  <h5>I am a danger callout!</h5>
+                  <h5>Lunes 10 de agosto Independencia del Ecuador</h5>
 
-                  <p>There is a problem that we need to fix. A wonderful serenity has taken possession of my entire
-                    soul,
-                    like these sweet mornings of spring which I enjoy with my whole heart.</p>
+                  <p>No hay clases virtuales. Disfruten el feriado!</p>
                 </div>
                 <div class="callout callout-info">
-                  <h5>I am an info callout!</h5>
+                  <h5>Prueba para el miercoles 12 de agosto</h5>
 
-                  <p>Follow the steps to continue to payment.</p>
+                  <p>Estudiar todos los temas de la primera unidad.</p>
                 </div>
-                <div class="callout callout-warning">
-                  <h5>I am a warning callout!</h5>
 
-                  <p>This is a yellow callout.</p>
-                </div>
-                <div class="callout callout-success">
-                  <h5>I am a success callout!</h5>
-
-                  <p>This is a green callout.</p>
-                </div>
               </div>
               <!-- /.card-body -->
             </div>
@@ -142,16 +133,7 @@ if (!isset($_SESSION['USU'])) {
         <!-- END ALERTS AND CALLOUTS -->
 
       </section>
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>Calificaciones</h1>
-            </div>
-            <!-- Main content -->
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
+
     </div>
 
   </div>
