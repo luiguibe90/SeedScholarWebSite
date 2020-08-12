@@ -1,18 +1,11 @@
 <?php
 session_start();
-include '../../service/studentService.php';
 if (!isset($_SESSION['USU'])) {
-  header('Location: ../../../Seed/login.html');
+    header('Location: ../../../Seed/login.html');
 }
-$alumnoService = new studentService();
-$result2 = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
-  $message='false';
-  if(isset($_POST["cambiar"])){
-      $alumnoService->updatePassword($_POST["password"],$_SESSION['EST']['COD_USUARIO']);
-      $message='true';
-  }
+include '../../service/studentService.php';
+$studentService = new studentService();
 ?>
-
 <!DOCTYPE html>
 <html>
 

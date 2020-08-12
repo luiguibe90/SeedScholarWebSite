@@ -1,15 +1,10 @@
 <?php
 session_start();
-include '../../service/studentService.php';
 if (!isset($_SESSION['USU'])) {
-  header('Location: ../../../Seed/login.html');
+    header('Location: ../../../Seed/login.html');
 }
-$alumnoService = new studentService();
-$result2 = $alumnoService->findSubjet($_SESSION['EST']['COD_PERSONA']);
-$result = $alumnoService->findAssistance($_SESSION['EST']['COD_PERSONA']);
-$asistencia="ASISTIÓ";
-$faltaJustificada="FALTA JUSTIFICADA";
-$faltaInjustificada="FALTA INJUSTIFICADA";
+include '../../service/studentService.php';
+$studentService = new studentService();
 ?>
 
 <!DOCTYPE html>

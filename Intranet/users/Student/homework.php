@@ -1,10 +1,10 @@
 <?php
 session_start();
-include '../../service/studentService.php';
 if (!isset($_SESSION['USU'])) {
     header('Location: ../../../Seed/login.html');
 }
-
+include '../../service/studentService.php';
+$studentService = new studentService();
 ?>
 
 <!DOCTYPE html>
