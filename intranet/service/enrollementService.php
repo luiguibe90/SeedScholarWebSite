@@ -26,6 +26,41 @@ class enrollementService extends mainService{
         }
         echo json_encode($datos);
      }
+     
+
+     function selectLevel(){
+      $consult = $this->conex->query("SELECT *FROM NIVEL_EDUCATIVO ");
+      $cont=0;
+      $datos=null;      
+      while ($row = $consult->fetch_assoc()){
+          $cont=1;
+          $datos = $datos."<option value=" . $row['COD_NIVEL_EDUCATIVO'] . ">" ."Nivel:".$row['NIVEL'] ." ".$row['NOMBRE']. "</option>";
+      }
+      if($cont==0){
+          echo ("mal");
+      }else{
+          echo ($datos); 
+      }    
+    }
+
+    function searchAlumn($alumn){
+
+        $consult = $this->conex->query("SELECT
+        concat(P.APELLIDO,',',P.NOMBRE) AS NAMEALUMN,
+        T.ESTADO AS ESTADO
+        FROM
+        PERSONA P,
+        TIPO_PERSONA_PERSONA T
+        WHERE
+          P.COD_PERSONA=T.COD_PERSONA
+          AND P.CEDULA = '$alumn'
+          AND T.COD_TIPO_PERSONA = 1 ");
+        while ($row = $consult->fetch_assoc()) {    
+            $datos['data'][] = $row;
+          }
+          echo json_encode($datos);
+
+    }
         
 
 

@@ -243,14 +243,6 @@ $aspirantService = new aspirantService();
                 </div><br><br>
 
 
-
-
-
-
-
-
-
-                <!-- Modal -->
                 <div class="modal fade" id="newRoll" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -269,115 +261,83 @@ $aspirantService = new aspirantService();
                                     <input type="text" class="form-control" placeholder="DNI" aria-label="Username"
                                         aria-describedby="basic-addon1" id="dniAlumn">
                                     <button type="button" class="btn btn-success" data-toggle='modal'
-                                        data-target='#AlumnSearch'>Buscar</button>
+                                        data-target='#AlumnSearch' onclick="searchAlumn()">Buscar</button>
 
                                 </div>
                             </div>
                             <div class="modal-body">
                                 <form>
-                                    <select name="cars" class="custom-select">
-                                        <option selected>Periodo</option>
-                                        <option value="volvo">Volvo</option>
-                                        <option value="fiat">Fiat</option>
-                                        <option value="audi">Audi</option>
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Periodo</label>
+                                    </div>
+                                    <select name="Periods" class="custom-select" id="SelectPeriodModal">
                                     </select>
 
                                 </form>
                             </div>
                             <div class="modal-body">
                                 <form>
-                                    <select name="cars" class="custom-select">
-                                        <option selected>Nivel</option>
-                                        <option value="volvo">Volvo</option>
-                                        <option value="fiat">Fiat</option>
-                                        <option value="audi">Audi</option>
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Nivel</label>
+                                    </div>
+                                    <select name="Periods" class="custom-select" id="SelectLevelModal">
                                     </select>
-
                                 </form>
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onclick="crearNuevo()">Matricular</button>
+                                <button id="cerrar" type="button" class="btn btn-danger"
+                                    data-dismiss="modal">Cerrar</button>
+                            </div>
+
+
                         </div>
+                    </div>
+                </div>
 
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="nuevoModulo" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Alumno</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                <!-- Modal Alumn Search -->
+                <div class="modal fade" id="AlumnSearch" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Datos del Alumno</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Nombres del
+                                            Alumno</span>
                                     </div>
-                                    <div class="modal-body">
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">Nombre del
-                                                    Alumno</span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Nombre Completo"
-                                                aria-label="Username" aria-describedby="basic-addon1" id="nombre">
-                                        </div>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">Estado del
-                                                    Alumno</span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Aprobado / Reprobado"
-                                                aria-label="Username" aria-describedby="basic-addon1" id="nombre">
-                                        </div>
-                                    </div>
+                                    <input type="text" class="form-control" placeholder="Nombre Nivel"
+                                        aria-label="Username" aria-describedby="basic-addon1" id="nameAlumn">
 
-
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success"
-                                            onclick="crearNuevo()">Matricular</button>
-                                        <button id="cerrar" type="button" class="btn btn-danger"
-                                            data-dismiss="modal">Cerrar</button>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Estado</span>
                                     </div>
+                                    <input type="text" class="form-control" placeholder="Estado" aria-label="Username"
+                                        aria-describedby="basic-addon1" id="stateAlumn">
                                 </div>
                             </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onclick="regresar()">Guardar</button>
+                                <button id="cerrar" type="button" class="btn btn-danger"
+                                    data-dismiss="modal">Cerrar</button>
+                            </div>
                         </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="AlumnSearch" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Datos del Alumno</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">Nombres del
-                                                    Alumno</span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Nombre Nivel"
-                                                aria-label="Username" aria-describedby="basic-addon1" id="nameAlu">
+                    </div>
+                </div>
 
-                                        </div>
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">Estado</span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Estado"
-                                                aria-label="Username" aria-describedby="basic-addon1" id="stateAlumn">
-                                        </div>
-                                    </div>
 
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success"
-                                            onclick="crearNuevo()">Guardar</button>
-                                        <button id="cerrar" type="button" class="btn btn-danger"
-                                            data-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </div>
+
+
 
 
             </section>
@@ -401,9 +361,11 @@ $aspirantService = new aspirantService();
             var idModulo
 
             $(document).ready(function() {
-                
+
                 fillSelectEnrollements()
-                
+                fillSelectLevels()
+                searchAlumn()
+
             });
 
 
@@ -416,62 +378,91 @@ $aspirantService = new aspirantService();
                         if (data != "mal") {
                             var selectPeriods = document.getElementById("selectPeriods");
                             selectPeriods.innerHTML = data;
-                            //var selectModulosFuncionalidad = document.getElementById(
-                           //     "selectModulosFuncionalidad");
-                            //selectModulosFuncionalidad.innerHTML = data;
+                            var SelectPeriodModal = document.getElementById("SelectPeriodModal");
+                            SelectPeriodModal.innerHTML = data;
                         }
                     }
                 });
             }
 
+            function fillSelectLevels() {
+                $.ajax({
+                    url: "../../service/getEnrollementService.php?selectLevels=true",
+                    data: {},
+                    type: "POST",
+                    success: function(data) {
+                        if (data != "mal") {
+                            var SelectLevelModal = document.getElementById("SelectLevelModal");
+                            SelectLevelModal.innerHTML = data;
+                        }
+                    }
+                });
+            }
+
+            function searchAlumn() {
+                var idAlumnSearch = document.getElementById('dniAlumn').value
+                $.ajax({
+                    url: "../../service/getEnrollementService.php?searchAlumn=&idAlumnSearch=" + idAlumnSearch,
+                    data: {},
+                    type: "POST",
+                    success: function(data) {
+                        if (data != "mal") {
+                            document.getElementById('nameAlumn').value = data['NAMEALUMN']
+                            document.getElementById('stateAlumn').value = data['ESTADO']
+                        }
+                    }
+                });
+            }
+            
+
 
             function tableEnroll() {
-                    var modulo = document.getElementById('selectPeriods').value
-                    tblenroll = $('#tblenroll').DataTable({
-                        "ajax": "../../service/getEnrollementService.php?listEnroll=true&modulo=" + modulo,
-                        "columns": [{
-                                "data": "CODALUMN",
-                            },
-                            {
-                                "data": "NAMEPEOPLE"
-                            },
-                            {
-                                "data": "LEVEL"
-                            },
-                            {
-                                "data": null,
-                                "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#modalFuncion'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarFuncion()'>Eliminar</button>",
-                                orderData: false
-                            },
-                        ],
-                        "destroy": true,
-                        "language": {
-                            "emptyTable": "No hay información",
-                            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                            "infoPostFix": "",
-                            "thousands": ",",
-                            "lengthMenu": "Mostrar _MENU_ Entradas",
-                            "processing": "Procesando...",
-                            "search": "Buscar:",
-                            "zeroRecords": "Sin resultados encontrados",
-                            "paginate": {
-                                "first": "Primero",
-                                "last": "Ultimo",
-                                "next": "Siguiente",
-                                "previous": "Anterior"
-                            }
+                var modulo = document.getElementById('selectPeriods').value
+                tblenroll = $('#tblenroll').DataTable({
+                    "ajax": "../../service/getEnrollementService.php?listEnroll=true&modulo=" + modulo,
+                    "columns": [{
+                            "data": "CODALUMN",
+                        },
+                        {
+                            "data": "NAMEPEOPLE"
+                        },
+                        {
+                            "data": "LEVEL"
+                        },
+                        {
+                            "data": null,
+                            "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#modalFuncion'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarFuncion()'>Eliminar</button>",
+                            orderData: false
+                        },
+                    ],
+                    "destroy": true,
+                    "language": {
+                        "emptyTable": "No hay información",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
                         }
-                    });
-                    $('#tblenroll tbody').on('click', 'td', function() {
-                        var data = tblenroll.row($(this).parents('tr')).data();
-                        id = data['CODALUMN'];
-                        document.getElementById('urlPrincipal').value = data['URL_PRINCIPAL']
-                        document.getElementById('nombreFuncion').value = data['NOMBRE']
-                        document.getElementById('descriFuncion').value = data['DESCRIPCION']
-                    });
-                }
+                    }
+                });
+                $('#tblenroll tbody').on('click', 'td', function() {
+                    var data = tblenroll.row($(this).parents('tr')).data();
+                    id = data['CODALUMN'];
+                    document.getElementById('urlPrincipal').value = data['URL_PRINCIPAL']
+                    document.getElementById('nombreFuncion').value = data['NOMBRE']
+                    document.getElementById('descriFuncion').value = data['DESCRIPCION']
+                });
+            }
             </script>
 
 
@@ -486,7 +477,7 @@ $aspirantService = new aspirantService();
         <!-- ./wrapper -->
 
         <!-- jQuery -->
-        
+
         <!-- jQuery UI 1.11.4 -->
         <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
