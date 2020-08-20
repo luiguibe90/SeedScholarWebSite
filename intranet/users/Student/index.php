@@ -152,12 +152,12 @@ $studentService = new studentService();
               <div class="small-box bg-danger">
                 <div class="inner">
                   <h3>.</h3>
-                  <p>Cambio de contraseña</p>
+                  <p>Comunicado</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-calendar"></i>
                 </div>
-                <a href="./changePassword.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="./notification.php" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col --><
